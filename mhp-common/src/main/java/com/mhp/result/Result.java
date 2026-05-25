@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Result<T> implements Serializable {
 
-    private Integer code; // 200成功，其它失败
+    private Integer code; // 200成功，0和其他失败
     private String msg;
     private T data;
 
@@ -33,7 +33,7 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> error(String msg) {
         Result<T> result = new Result<>();
         result.msg = msg;
-        result.code = 500;
+        result.code = 0;
         return result;
     }
 }

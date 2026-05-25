@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mhp.result.Result;
+import com.mhp.constant.MessageConstant;
 import com.mhp.dto.AdminLoginDTO;
 import com.mhp.entity.SysUser;
 import com.mhp.service.AdminService;
@@ -13,6 +14,7 @@ import com.mhp.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.mapper.AdminMapper;
 import com.mhp.vo.LoginVO;
+import org.springframework.util.DigestUtils;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -26,12 +28,19 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Result<LoginVO> login(AdminLoginDTO adminLoginDTO) {
-        String password = adminLoginDTO.getPassword();
-        SysUser admin = adminMapper.login(adminLoginDTO.getUsername(), password);
-        if (admin == null || admin.getStudentNo() == null) {
-            return Result.error("管理员账号或密码错误");
+        String studentNo = adminLoginDTO.getUsername();
+        String password = adminLoginDTO.getPassword();   
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
+        
+        SysUser admin = adminMapper.login(studentNo);
+        if (admin == null) {
+            return Result.error(MessageConstant.USERNAME_NULL);
+        }
+        if(!admin.getPassword().equals(password)){
+            return Result.error(MessageConstant.PASSWORD_ERROR);
         }
         String token = jwtUtil.createToken(admin.getUserId(), "admin");
+
         LoginVO loginVO = new LoginVO();
         loginVO.setToken(token);
         loginVO.setUserInfo(admin);
