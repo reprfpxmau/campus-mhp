@@ -24,11 +24,17 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-
+    /**
+     * 管理员登录
+     * @param adminLoginDTO
+     * @return
+     */
     @PostMapping("/login")
     @Operation(summary = "管理员登录")
     public Result login(@RequestBody AdminLoginDTO adminLoginDTO) {
         log.info("管理员登录请求：{}", adminLoginDTO);
         return adminService.login(adminLoginDTO);
     }
+
+    
 }

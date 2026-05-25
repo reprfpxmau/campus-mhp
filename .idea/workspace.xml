@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a009e757-ca41-4bdd-9916-df9a5a2584b5" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mhp-common/src/main/java/com/mhp/result/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-common/src/main/java/com/mhp/result/Result.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/controller/admin/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/mapper/AdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/mapper/AdminMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/impl/AdminServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mhp-server/src/main/resources/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/resources/mapper/AdminMapper.xml" afterDir="false" />
     </list>
@@ -134,6 +133,7 @@
       <workItem from="1779701633682" duration="13000" />
       <workItem from="1779701849323" duration="1565000" />
       <workItem from="1779705761450" duration="22000" />
+      <workItem from="1779725001563" duration="9000" />
     </task>
     <servers />
   </component>

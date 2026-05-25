@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mhp.result.Result;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.Page;
 import com.mhp.constant.MessageConstant;
 import com.mhp.dto.AdminLoginDTO;
 import com.mhp.entity.SysUser;
@@ -15,6 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.mapper.AdminMapper;
 import com.mhp.vo.LoginVO;
 import org.springframework.util.DigestUtils;
+import com.mhp.dto.UserPageQueryDTO;
+import com.mhp.result.PageResult;
+import java.util.List;
+
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -46,5 +52,14 @@ public class AdminServiceImpl implements AdminService {
         loginVO.setUserInfo(admin);
         log.info("管理员登录成功：{}", admin.getRealName());
         return Result.success(loginVO);
+    }
+
+    @Override
+    public PageResult pageQuery(UserPageQueryDTO userPageQueryDTO) {
+        PageHelper.startPage(userPageQueryDTO.getPage(),userPageQueryDTO.getPageSize());
+        Page<SysUser> page = adminMapper.pageQuery(userPageQueryDTO);
+        long total = page.getTotal();
+        List<SysUser> records = page.getResult();
+        return new PageResult(total, records);
     }
 }

@@ -5,4 +5,22 @@
     <select id="login" resultType="com.mhp.entity.SysUser">
         select * from sys_user where student_no = #{studentNo}
     </select>
+
+    <!-- pageQuery --> 
+
+    <select id="pageQuery" resultType="com.mhp.entity.SysUser">
+        select * from sys_user 
+        <where>
+         <if test="realName != null and realName != ''">
+                and real_name like concat('%',#{realName},'%')
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                and student_no like concat('%',#{studentNo},'%')
+            </if>
+            <if test="status != null and status != ''">
+                and status like concat('%',#{status},'%')
+            </if>
+        </where>
+    </select>
+
 </mapper>
