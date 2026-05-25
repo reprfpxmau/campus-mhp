@@ -1,4 +1,4 @@
-package com.mhp.common.result;
+package com.mhp.result;
 
 import java.io.Serializable;
 import lombok.Data;

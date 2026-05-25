@@ -2,7 +2,7 @@ package com.mhp.service;
 
 import org.springframework.stereotype.Service;
 
-import com.mhp.common.result.Result;
+import com.mhp.result.Result;
 import com.mhp.dto.AdminLoginDTO;
 import com.mhp.vo.LoginVO;
 

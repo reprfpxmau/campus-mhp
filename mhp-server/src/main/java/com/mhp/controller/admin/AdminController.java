@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.mhp.common.result.Result;
+import com.mhp.result.Result;
 import com.mhp.dto.AdminLoginDTO;
 import com.mhp.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;

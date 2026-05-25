@@ -1,4 +1,4 @@
-package com.mhp.common.result;
+package com.mhp.result;
 
 import java.util.List;
 import lombok.Data;
