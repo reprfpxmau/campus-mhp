@@ -1,7 +1,6 @@
 package com.mhp.dto;
 
 import java.io.Serializable;
-
 import lombok.Data;
 
 @Data

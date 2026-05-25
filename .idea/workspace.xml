@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a009e757-ca41-4bdd-9916-df9a5a2584b5" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhp-common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhp-pojo/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhp-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-common/src/main/java/com/mhp/common/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-common/src/main/java/com/mhp/properties/JwtProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-common/src/main/java/com/mhp/properties/JwtProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-pojo/src/main/java/com/mhp/dto/AdminLoginDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-pojo/src/main/java/com/mhp/dto/AdminLoginDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-pojo/src/main/java/com/mhp/entity/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-pojo/src/main/java/com/mhp/entity/SysUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-pojo/src/main/java/com/mhp/vo/LoginVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-pojo/src/main/java/com/mhp/vo/LoginVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/controller/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/service/impl/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-server/src/main/java/com/mhp/util/JwtUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhp-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mhp-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "reprfpxmau"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/reprfpxmau/campus-mhp.git",
+    "accountId": "2173e97d-5e1e-48e9-898f-0faa8c1787e7"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -117,6 +136,7 @@
       <workItem from="1779667924030" duration="5000" />
       <workItem from="1779675804113" duration="386000" />
       <workItem from="1779677865000" duration="20000" />
+      <workItem from="1779693685873" duration="130000" />
     </task>
     <servers />
   </component>

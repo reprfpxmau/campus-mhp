@@ -41,3 +41,17 @@ logging:
         mapper: debug
         service: info
         controller: info
+
+# Knife4j / SpringDoc 配置
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  cache:
+    disabled: true
+knife4j:
+  # 增强模式会额外请求分组接口，易出现「文档请求异常」；关闭后走标准 OpenAPI 更稳定
+  enable: false
+  setting:
+    language: zh_cn

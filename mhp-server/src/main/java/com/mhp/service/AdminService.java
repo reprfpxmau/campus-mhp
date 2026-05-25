@@ -1,8 +1,10 @@
 package com.mhp.service;
 
 import org.springframework.stereotype.Service;
+
+import com.mhp.common.result.Result;
 import com.mhp.dto.AdminLoginDTO;
-import com.mhp.entity.SysUser;
+import com.mhp.vo.LoginVO;
 
 @Service
 public interface AdminService {
@@ -11,5 +13,5 @@ public interface AdminService {
      * @param adminLoginDTO
      * @return
      */
-    SysUser login(AdminLoginDTO adminLoginDTO);
+    Result<LoginVO> login(AdminLoginDTO adminLoginDTO);
 }
