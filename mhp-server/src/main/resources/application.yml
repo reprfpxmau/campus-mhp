@@ -1,0 +1,43 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mhp_platform?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 688748
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 1
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+mhp:
+  jwt:
+    secret: campus-mhp-secret-key-2026
+    admin-expiration: 7200000
+    user-expiration: 86400000
+
+oss:
+  type: local
+  local-path: D:/Java/campus-mhp/oss/
+  local-domain: http://localhost:8081
+
+logging:
+  level:
+    com:
+      mhp:
+        mapper: debug
+        service: info
+        controller: info
