@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhp.mapper.ScaleMapper">
+    <select id="pageQuery" resultType="com.mhp.entity.PsyScale">
+        select * from psy_scale
+        <where>
+            <if test="scaleName != null and scaleName != ''">
+                and scale_name like concat('%',#{scaleName},'%')
+            </if>
+            <if test="status != null and status != ''">
+                and status like concat('%',#{status},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

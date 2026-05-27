@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhp.mapper.ArchiveMapper">
+    <select id="pageQuery" resultType="com.mhp.entity.MhArchive">
+        select * from mh_archive
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                and student_no like concat('%',#{studentNo},'%')
+            </if>
+            <if test="college != null and college != ''">
+                and college like concat('%',#{college},'%')
+            </if>
+            <if test="archiveStatus != null and archiveStatus != ''">
+                and archive_status like concat('%',#{archiveStatus},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

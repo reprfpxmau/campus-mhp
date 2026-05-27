@@ -20,7 +20,11 @@ import org.springdoc.core.annotations.ParameterObject;
 public class UserController {
     @Autowired
     private AdminService adminService;
-
+    /**
+     * 用户分页查询
+     * @param userPageQueryDTO
+     * @return
+     */
     @GetMapping("/page")
     @Operation(summary = "用户分页查询")
     public Result<PageResult> page(@ParameterObject UserPageQueryDTO userPageQueryDTO) {
@@ -28,6 +32,4 @@ public class UserController {
         PageResult pageResult = adminService.pageQuery(userPageQueryDTO);
         return Result.success(pageResult);
     }
-
-    
 }
