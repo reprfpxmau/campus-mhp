@@ -1,6 +1,5 @@
 package com.mhp.entity;
 
-import java.io.Serializable;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;

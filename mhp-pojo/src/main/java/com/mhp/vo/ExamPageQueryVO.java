@@ -10,8 +10,8 @@ public class ExamPageQueryVO {
     private Long recordId;
     private Long studentId;
     private Long scaleId;
-    private LocalDateTime startTime;
-    private LocalDateTime submitTime;
+    private String startTime;
+    private String submitTime;
     private Integer duration;
     private Integer status;
     private Integer isValid;

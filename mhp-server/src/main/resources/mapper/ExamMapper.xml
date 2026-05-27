@@ -17,7 +17,7 @@
                 and su.student_no like concat('%',#{studentNo},'%')
             </if>
             <if test="status != null and status != ''">
-                and per.status like concat('%',#{status},'%')
+                and per.status = #{status}
             </if>
         </where>
         order by create_time desc

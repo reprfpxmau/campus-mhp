@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import java.time.LocalDateTime;
 
 /**
  * 角色实体类
@@ -17,14 +18,14 @@ import lombok.AllArgsConstructor;
 public class SysRole implements Serializable {
     // 角色ID
     private Long roleId;
-    // 角色编码
+    // 角色编码ADMIN/COUNSELOR/STUDENT（管理员/咨询师/咨询学生）
     private String roleCode;
     // 角色名称
     private String roleName;
     // 数据范围：1=全部 2=本学院 3=个人
-    private String dataScope;
+    private Integer dataScope;
     // 创建时间
-    private String createTime;
+    private LocalDateTime createTime;
     // 更新时间
-    private String updateTime;
+    private LocalDateTime updateTime;
 }

@@ -9,7 +9,7 @@
                 and scale_name like concat('%',#{scaleName},'%')
             </if>
             <if test="status != null and status != ''">
-                and status like concat('%',#{status},'%')
+                and status = #{status}
             </if>
         </where>
         order by create_time desc
