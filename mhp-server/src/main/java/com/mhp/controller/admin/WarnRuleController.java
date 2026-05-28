@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mhp.service.AdminService;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
 import io.swagger.v3.oas.annotations.Operation;
