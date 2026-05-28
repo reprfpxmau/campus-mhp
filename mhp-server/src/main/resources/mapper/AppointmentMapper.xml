@@ -14,7 +14,7 @@
         <if test="studentName != null and studentName != ''">
             and su.real_name like concat('%',#{studentName},'%')    
         </if>
-        <if test="status != null and status != ''">
+        <if test="status != null">
             and ca.status = #{status}
         </if>
         <if test="appointmentDate != null and appointmentDate != ''">

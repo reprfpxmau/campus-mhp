@@ -17,7 +17,7 @@
             <if test="studentNo != null and studentNo != ''">
                 and student_no like concat('%',#{studentNo},'%')
             </if>
-            <if test="status != null and status != ''">
+            <if test="status != null">
                 and status = #{status}
             </if>
         </where>

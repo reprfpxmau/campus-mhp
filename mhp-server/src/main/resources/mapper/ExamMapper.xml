@@ -16,7 +16,7 @@
             <if test="studentNo != null and studentNo != ''">
                 and su.student_no like concat('%',#{studentNo},'%')
             </if>
-            <if test="status != null and status != ''">
+            <if test="status != null">
                 and per.status = #{status}
             </if>
         </where>

@@ -14,11 +14,11 @@
             <if test="studentName != null and studentName != ''">
                 and su.real_name like concat('%',#{studentName},'%')
             </if>
-            <if test="eventLevel != null and eventLevel != ''">
-                and cwe.event_level = #{eventLevel}    
+            <if test="eventLevel != null">
+                and cwe.event_level = #{eventLevel}
             </if>
-            <if test="eventStatus != null and eventStatus != ''">
-                and cwe.event_status = #{eventStatus}  
+            <if test="eventStatus != null">
+                and cwe.event_status = #{eventStatus}
             </if>
         </where>
         order by cwe.create_time desc

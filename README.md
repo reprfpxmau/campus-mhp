@@ -17,7 +17,7 @@
 | 心理测评 | 标准化量表管理、在线测评、自动评分（含正向/反向计分）、风险等级判定 |
 | 危机预警 | 规则配置、测评结果自动触发风险评估与预警事件、预警处理闭环 |
 | 在线咨询 | 咨询师排班、预约管理、咨询会话、记录归档 |
-| 数据统计 | 概览大屏、档案分布、学院咨询量、月度测评趋势等可视化图表 |
+| 数据统计 | 工作台（概览卡片、待处理预警、今日预约）、数据统计（档案分布、学院咨询量、月度趋势图表） |
 
 ---
 
@@ -244,10 +244,10 @@ npm run build
 | 预警 | 处理 | POST | /admin/warn/process |
 | 预警规则 | 分页查询 | GET | /admin/warn-rule/page |
 | 预警规则 | 新增/修改 | POST/PUT | /admin/warn-rule |
-| 统计 | 概览 | GET | /admin/stat/overview |
-| 统计 | 档案分布 | GET | /admin/stat/archive-distribution |
-| 统计 | 学院咨询 | GET | /admin/stat/college-consult |
-| 统计 | 月度趋势 | GET | /admin/stat/monthly-exam |
+| 统计 | 概览 | GET | /admin/stat/overview | 工作台卡片 |
+| 统计 | 档案分布 | GET | /admin/stat/archive-distribution | 数据统计页饼图 |
+| 统计 | 学院咨询 | GET | /admin/stat/college-consult | 数据统计页柱状图 |
+| 统计 | 月度趋势 | GET | /admin/stat/monthly-exam | 数据统计页折线图 |
 | 通用 | 文件上传 | POST | /admin/common/upload |
 
 ### 用户端接口

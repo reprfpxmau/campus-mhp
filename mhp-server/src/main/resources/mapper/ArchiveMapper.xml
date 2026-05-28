@@ -14,7 +14,7 @@
             <if test="college != null and college != ''">
                 and college like concat('%',#{college},'%')
             </if>
-            <if test="archiveStatus != null and archiveStatus != ''">
+            <if test="archiveStatus != null">
                 and archive_status like concat('%',#{archiveStatus},'%')
             </if>
         </where>
