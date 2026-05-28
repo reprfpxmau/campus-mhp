@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mhp.mapper.WarnMapper">
+    <select id="pageQuery" resultType="com.mhp.vo.WarnPageQueryVO">
+        select 
+            cwe.*,
+            su.student_no as studentNo,
+            su.real_name as studentName
+        from cr_warn_event as cwe
+        left join sys_user as su on cwe.student_id = su.user_id
+        <where>
+            <if test="studentName != null and studentName != ''">
+                and su.real_name like concat('%',#{studentName},'%')
+            </if>
+            <if test="eventLevel != null and eventLevel != ''">
+                and cwe.event_level = #{eventLevel}    
+            </if>
+            <if test="eventStatus != null and eventStatus != ''">
+                and cwe.event_status = #{eventStatus}  
+            </if>
+        </where>
+        order by cwe.create_time desc
+    </select>
+</mapper>

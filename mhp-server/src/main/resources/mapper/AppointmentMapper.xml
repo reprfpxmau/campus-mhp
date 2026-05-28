@@ -21,6 +21,7 @@
             and ca.appointment_date = #{appointmentDate}    
         </if>
     </where>
+    order by create_time desc
 </select>
 
 </mapper>
