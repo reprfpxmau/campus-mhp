@@ -1,6 +1,7 @@
 package com.mhp.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,8 @@ public class SysCounselorProfile implements Serializable {
     private String specialty;
     // 工作经历
     private String workExperience;
+    // 创建时间
+    private LocalDateTime createTime;
+    // 更新时间
+    private LocalDateTime updateTime;
 }

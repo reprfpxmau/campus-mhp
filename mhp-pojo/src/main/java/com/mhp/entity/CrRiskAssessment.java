@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -20,11 +21,11 @@ public class CrRiskAssessment {
     // 学生ID
     private Long studentId;
     // 风险指数
-    private Integer riskScore;
+    private BigDecimal riskScore;
     // 风险等级：1=低 2=中 3=高
     private Integer riskLevel;
     // 触发规则
-    private String triggerRule;
+    private String triggerRules;
     //证据数据
     private String evidenceData;
     // 评估时间

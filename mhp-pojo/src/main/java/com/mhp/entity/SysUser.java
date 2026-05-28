@@ -1,6 +1,7 @@
 package com.mhp.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -32,8 +33,8 @@ public class SysUser implements Serializable {
     // 角色ID
     private Long roleId;
     // 创建时间
-    private String createTime;
+    private LocalDateTime createTime;
     // 更新时间
-    private String updateTime;
+    private LocalDateTime updateTime;
 
 }

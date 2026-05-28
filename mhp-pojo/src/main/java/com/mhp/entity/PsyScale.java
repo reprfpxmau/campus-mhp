@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * 量表实体类
  * 索引： idx_student_id, idx_student_no, idx_college, idx_archive_status
@@ -33,7 +35,7 @@ public class PsyScale {
     // 是否内置：0=否 1=是
     private Integer isBuiltIn;
     // 创建时间
-    private String createTime;
+    private LocalDateTime createTime;
     // 更新时间
-    private String updateTime;
+    private LocalDateTime updateTime;
 }

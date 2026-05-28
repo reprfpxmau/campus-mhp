@@ -4,9 +4,12 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
 import java.time.LocalDateTime;
 
+/**
+ * 预警规则实体类
+ * INDEX: idx_rule_name, idx_data_source
+ */
 @Data
 @Builder
 @NoArgsConstructor

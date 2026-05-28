@@ -1,6 +1,7 @@
 package com.mhp.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -20,13 +21,13 @@ public class SysLoginLog implements Serializable {
     // 用户ID
     private Long userId;
     // 登录方式：1=密码 2=短信
-    private String loginType;
+    private Integer loginType;
     // IP地址
     private String ipAddress;
     // 浏览器标识
     private String userAgent;
     // 登录状态：0=失败 1=成功
-    private Boolean loginStatus;
+    private Integer loginStatus;
     // 登录时间
-    private String loginTime;
+    private LocalDateTime loginTime;
 }

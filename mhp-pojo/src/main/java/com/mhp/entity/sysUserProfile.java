@@ -1,6 +1,7 @@
 package com.mhp.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class sysUserProfile implements Serializable {
+public class SysUserProfile implements Serializable {
     // 主键
     private Long profileId;
     // 用户ID
@@ -27,7 +28,9 @@ public class sysUserProfile implements Serializable {
     // 个人简介
     private String bio;
     // 创建时间
-    private String createTime;
+    private LocalDateTime createTime;
+    // 更新时间
+    private LocalDateTime updateTime;
     // 隐私级别：1=公开 2=仅自己可见
-    private String privacyLevel;
+    private Integer privacyLevel;
 }

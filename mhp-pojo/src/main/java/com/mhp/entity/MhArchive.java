@@ -1,6 +1,8 @@
 package com.mhp.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -24,13 +26,13 @@ public class MhArchive implements Serializable {
     // 姓名
     private String name;
     // 性别
-    private String gender;
+    private Integer gender;
     // 学院
     private String college;
     // 班级
     private String className;
     // 出生日期
-    private String birthDate;
+    private LocalDate birthDate;
     // 家庭结构
     private String familyStructure;
     // 既往病史
@@ -38,11 +40,11 @@ public class MhArchive implements Serializable {
     // 成长重大事件
     private String majorEvents;
     // 档案状态：1=正常 2=重点关注 3=高危 4=已归档
-    private String archiveStatus;
+    private Integer archiveStatus;
     // 风险等级：0=正常 1=预警 2=高危
-    private String riskLevel;
+    private Integer riskLevel;
     // 创建时间
-    private String createTime;
+    private LocalDateTime createTime;
     // 更新时间
-    private String updateTime;
+    private LocalDateTime updateTime;
    }

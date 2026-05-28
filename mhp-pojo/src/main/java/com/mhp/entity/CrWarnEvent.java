@@ -4,10 +4,6 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
 import java.time.LocalDateTime;
 
 /**
@@ -22,7 +18,7 @@ public class CrWarnEvent {
     // 主键
     private Long eventId;
     // 学生ID
-    private Integer studentId;
+    private Long studentId;
     // 评估ID
     private Long assessmentId;
     // 事件级别：1=低 2=中 3=高
@@ -32,7 +28,7 @@ public class CrWarnEvent {
     // 触发来源（如EXAM）
     private String triggerSource;
     // 处理人ID
-    private Integer handlerId;
+    private Long handlerId;
     // 创建时间
     private LocalDateTime createTime;
 }
