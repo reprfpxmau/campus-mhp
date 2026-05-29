@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import com.mhp.dto.UserPageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.entity.SysUser;
+import com.mhp.vo.UserVO;
+
 
 
 @Service
@@ -33,4 +35,10 @@ public interface UserService {
      * @return
      */
     void updateStatus(Integer status,Long userId);
+    /**
+     * 获取用户详情
+     * @param userId
+     * @return
+     */
+    UserVO getDetail(Long userId);
 }

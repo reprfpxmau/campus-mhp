@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import com.mhp.vo.UserPageQueryVO;
 import com.mhp.mapper.SysUserRoleMapper;
 import com.mhp.entity.SysUserRole;
+import com.mhp.vo.UserVO;
+import com.mhp.result.Result;
+import org.springframework.beans.BeanUtils;
 
 
 
@@ -83,5 +86,16 @@ public class UserServiceImpl implements UserService {
                 .status(status)
                 .build();
         userMapper.update(sysUser);
+    }
+    /**
+     * 获取用户详情
+     * @param userId
+     * @return
+     */
+    @Override
+    public UserVO getDetail(Long userId) {
+        UserVO userVO = new UserVO();
+        userVO = userMapper.selectByUserId(userId);
+        return userVO;
     }
 }

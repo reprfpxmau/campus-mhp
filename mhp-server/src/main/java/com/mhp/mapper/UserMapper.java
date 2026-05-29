@@ -5,6 +5,7 @@ import com.mhp.dto.UserPageQueryDTO;
 import com.mhp.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import com.mhp.vo.UserPageQueryVO;
+import com.mhp.vo.UserVO;
 
 @Mapper
 public interface UserMapper {
@@ -28,4 +29,11 @@ public interface UserMapper {
      * @return
      */
     void update(SysUser sysUser);
+
+    /**
+     * 根据用户ID查询用户详情
+     * @param userId
+     * @return
+     */
+    UserVO selectByUserId(Long userId);
 }

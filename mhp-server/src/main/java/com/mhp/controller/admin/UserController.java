@@ -18,6 +18,8 @@ import org.springdoc.core.annotations.ParameterObject;
 import com.mhp.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mhp.entity.SysUser;
+import com.mhp.vo.UserVO;
+import com.mhp.constant.MessageConstant;
 
 
 
@@ -75,7 +77,21 @@ public class UserController {
     @Operation(summary = "启用/禁用用户")
     public Result updateStatus(@PathVariable Integer status, @RequestParam Long id) {
         log.info("启用/禁用用户请求：{}，用户ID：{}", status, id);
+        if(id == 1) {
+            return Result.error(MessageConstant.ADMIN_ACCOUNT_CANNOT_BE_ENABLED_OR_DISABLED);
+        }
         userService.updateStatus(status, id);
         return Result.success();
     }
+
+    /**获取用户详情
+     * @param id 用户ID
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Result<UserVO> getDetail(@PathVariable Long id) {
+        UserVO userVO = userService.getDetail(id);
+        return Result.success(userVO);
+    }
+    
 }

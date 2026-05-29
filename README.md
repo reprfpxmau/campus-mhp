@@ -71,7 +71,7 @@ campus-mhp/
 │   ├── 测试用例.md
 │   └── TODO.md                  # 待实现功能清单
 ├── sql/                            # 数据库脚本
-│   └── mhp_init.sql               # 初始化脚本（29张表 + 预置数据）
+│   └── mhp_init.sql               # 初始化脚本（30张表 + 预置数据）
 ├── api-doc/                        # 接口文档
 │   ├── 管理端接口文档.html
 │   └── 用户端接口文档.html
@@ -112,7 +112,7 @@ campus-mhp/
 
 ## 数据库设计
 
-系统共 29 张业务表，遵循第三范式（3NF），采用 InnoDB 存储引擎，字符集 utf8mb4。
+系统共 30 张业务表，遵循第三范式（3NF），采用 InnoDB 存储引擎，字符集 utf8mb4。
 
 | 模块 | 表数 | 核心表 |
 |------|------|--------|
@@ -156,7 +156,7 @@ mysql -u root -p
 source sql/mhp_init.sql
 ```
 
-执行后自动创建 `mhp_platform` 数据库、29 张表和预置数据（管理员、咨询师、学生账号、量表、预警规则等）。
+执行后自动创建 `mhp_platform` 数据库、30 张表和预置数据（管理员、咨询师、学生账号、量表、预警规则等）。
 
 ### 2. 后端启动
 
@@ -228,6 +228,7 @@ npm run build
 | 认证 | 登录 | POST | /admin/auth/login |
 | 认证 | 退出 | POST | /admin/auth/logout |
 | 用户 | 分页查询 | GET | /admin/user/page |
+| 用户 | 用户详情 | GET | /admin/user/{id} |
 | 用户 | 新增 | POST | /admin/user |
 | 用户 | 修改 | PUT | /admin/user |
 | 用户 | 启用/禁用 | POST | /admin/user/status/{status}?id= |

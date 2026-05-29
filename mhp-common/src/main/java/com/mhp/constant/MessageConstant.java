@@ -6,5 +6,5 @@ public class MessageConstant {
     public static final String PASSWORD_ERROR = "密码错误";
     public static final String USER_STATUS_ERROR = "账号已被禁用";
 
-    public static final String ENABLE_USER_CANNOT_BE_MODIFIED = "启用用户不能修改";
+    public static final String ADMIN_ACCOUNT_CANNOT_BE_ENABLED_OR_DISABLED = "初始管理员账号不能禁用";
 }

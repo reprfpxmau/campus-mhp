@@ -62,5 +62,15 @@
     </update>
     
     
-    
+
+    <!-- selectByUserId --> 
+
+    <select id="selectByUserId" resultType="com.mhp.vo.UserVO">
+        select 
+            su.*,
+            sr.role_name
+         from sys_user as su
+        left join sys_role as sr on su.role_id = sr.role_id
+        where user_id = #{userId}
+    </select>    
     </mapper>
