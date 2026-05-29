@@ -1,7 +1,6 @@
 package com.mhp.mapper;
 
 import com.mhp.dto.AdminLoginLogDTO;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
 import com.mhp.entity.SysLoginLog;
@@ -13,6 +12,5 @@ public interface LoginLogMapper {
      * @param adminLoginLogDTO
      * @return
      */
-    @Select("select * from sys_login_log")
     Page<SysLoginLog> pageQuery(AdminLoginLogDTO adminLoginLogDTO);
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mhp.mapper.LoginLogMapper">
+    <select id="pageQuery" resultType="com.mhp.entity.SysLoginLog">
+        select * from sys_login_log
+        <where>
+            <if test="loginStatus != null">
+                and login_status = #{loginStatus}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+</mapper>

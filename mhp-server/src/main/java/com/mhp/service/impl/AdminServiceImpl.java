@@ -32,12 +32,17 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    /**
+     * 管理员登录
+     * @param adminLoginDTO
+     * @return
+     */
     @Override
     public Result<LoginVO> login(AdminLoginDTO adminLoginDTO) {
         String studentNo = adminLoginDTO.getUsername();
-        String password = adminLoginDTO.getPassword();   
+        String password = adminLoginDTO.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());
-        
+
         SysUser admin = adminMapper.login(studentNo);
         if (admin == null) {
             return Result.error(MessageConstant.USERNAME_NULL);
@@ -45,8 +50,15 @@ public class AdminServiceImpl implements AdminService {
         if(!admin.getPassword().equals(password)){
             return Result.error(MessageConstant.PASSWORD_ERROR);
         }
+        // TODO: 校验账号禁用状态
+        // if (admin.getStatus() == 0) { return Result.error("账号已被禁用"); }
+
+        // TODO: 根据 roleId 区分角色（admin/counselor），而非硬编码 "admin"
+        // String role = admin.getRoleId() == 1 ? "admin" : "counselor";
         String token = jwtUtil.createToken(admin.getUserId(), "admin");
 
+        // TODO: 返回前清除密码字段，避免泄露
+        // admin.setPassword(null);
         LoginVO loginVO = new LoginVO();
         loginVO.setToken(token);
         loginVO.setUserInfo(admin);
@@ -54,6 +66,11 @@ public class AdminServiceImpl implements AdminService {
         return Result.success(loginVO);
     }
 
+    /**
+     * 分页查询用户
+     * @param userPageQueryDTO
+     * @return
+     */
     @Override
     public PageResult pageQuery(UserPageQueryDTO userPageQueryDTO) {
         PageHelper.startPage(userPageQueryDTO.getPage(),userPageQueryDTO.getPageSize());
