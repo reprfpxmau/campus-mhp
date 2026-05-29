@@ -242,6 +242,7 @@ npm run build
 | 预约 | 确认/拒绝 | POST | /admin/appointment/confirm/{id} |
 | 预警 | 分页查询 | GET | /admin/warn/page |
 | 预警 | 评估详情 | GET | /admin/warn/detail/{assessmentId} |
+| 预警 | 分发预警 | POST | /admin/warn/distribute |
 | 预警 | 处理 | POST | /admin/warn/process |
 | 预警规则 | 分页查询 | GET | /admin/warn-rule/page |
 | 预警规则 | 新增/修改 | POST/PUT | /admin/warn-rule |

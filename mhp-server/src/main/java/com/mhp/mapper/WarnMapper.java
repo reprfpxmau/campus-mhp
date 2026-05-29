@@ -6,6 +6,7 @@ import com.github.pagehelper.Page;
 import com.mhp.dto.WarnPageQueryDTO;
 import com.mhp.entity.CrRiskAssessment;
 import org.apache.ibatis.annotations.Select;
+import com.mhp.entity.CrWarnProcess;
 
 @Mapper
 public interface WarnMapper {
@@ -22,4 +23,12 @@ public interface WarnMapper {
      */
     @Select("select * from cr_risk_assessment where assessment_id = #{assessmentId}")
        Page<CrRiskAssessment> getDetail(String assessmentId);
+    
+    /**
+     * 预警处理
+     * @param crWarnProcessDTO 预警处理参数
+     * @return
+     */
+    void insert(CrWarnProcess crWarnProcess);
+    
 }

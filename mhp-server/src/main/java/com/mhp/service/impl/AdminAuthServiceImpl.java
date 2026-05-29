@@ -3,23 +3,16 @@ package com.mhp.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import com.mhp.result.Result;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.Page;
 import com.mhp.constant.MessageConstant;
 import com.mhp.dto.AdminLoginDTO;
 import com.mhp.entity.SysUser;
 import com.mhp.service.AdminAuthService;
 import com.mhp.utils.JwtUtil;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.mapper.AdminMapper;
 import com.mhp.vo.LoginVO;
 import org.springframework.util.DigestUtils;
-import com.mhp.dto.UserPageQueryDTO;
-import com.mhp.result.PageResult;
-import java.util.List;
 
 
 @Service

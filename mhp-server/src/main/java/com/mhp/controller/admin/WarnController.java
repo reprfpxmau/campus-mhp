@@ -14,6 +14,11 @@ import com.mhp.service.WarnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springdoc.core.annotations.ParameterObject;
 import com.mhp.result.PageResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import com.mhp.dto.CrWarnProcessDTO;
+
+
 
 /**
  * 预警控制器
@@ -50,6 +55,19 @@ public class WarnController {
         log.info("预警评估详情请求：{}", assessmentId);
         PageResult pageResult = warnService.getDetail(assessmentId);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 预警评估详情
+     * @param assessmentId
+     * @return
+     */
+    @PostMapping("process")
+    public Result postMethodName(@RequestBody CrWarnProcessDTO crWarnProcessDTO) {
+        //TODO: process POST request
+        log.info("预警处理请求：{}", crWarnProcessDTO);
+        warnService.process(crWarnProcessDTO);
+        return Result.success();
     }
     
 }

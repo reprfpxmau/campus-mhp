@@ -4,8 +4,12 @@
 <mapper namespace="com.mhp.mapper.UserMapper">
 
 <!-- 分页查询用户 --> 
-    <select id="pageQuery" resultType="com.mhp.entity.SysUser">
-        select * from sys_user 
+    <select id="pageQuery" resultType="com.mhp.vo.UserPageQueryVO">
+        select 
+            su.*,
+            sr.role_name
+         from sys_user as su
+        left join sys_role as sr on su.role_id = sr.role_id
         <where>
          <if test="realName != null and realName != ''">
                 and real_name like concat('%',#{realName},'%')
@@ -19,5 +23,11 @@
         </where>
         order by create_time desc
     </select>
-    
+
+    <!-- insert --> 
+
+    <insert id="insert" parameterType="com.mhp.entity.SysUser">
+        insert into sys_user (real_name, student_no, password, role_id,phone,status, create_time)
+        values (#{realName}, #{studentNo}, #{password}, #{roleId},#{phone},#{status},#{createTime})
+    </insert>    
 </mapper>

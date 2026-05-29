@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mhp.service.AdminAuthService;
 import com.mhp.dto.UserPageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
@@ -13,6 +12,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springdoc.core.annotations.ParameterObject;
 import com.mhp.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import com.mhp.entity.SysUser;
+
 
 @RestController
 @RequestMapping("/admin/user")
@@ -33,4 +36,17 @@ public class UserController {
         PageResult pageResult = userService.pageQuery(userPageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * 新增用户
+     * @param sysUser
+     * @return
+     */
+    @PostMapping
+    public Result add(@RequestBody SysUser sysUser) {
+        //TODO: process POST request
+        userService.add(sysUser);
+        return Result.success(sysUser);
+    }
+    
 }

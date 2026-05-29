@@ -6,15 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mhp.dto.WarnPageQueryDTO;
 import com.mhp.entity.CrRiskAssessment;
+import com.mhp.entity.CrWarnProcess;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mhp.result.PageResult;
 import java.util.List;
 
+import com.mhp.context.BaseContext;
+import com.mhp.dto.CrWarnProcessDTO;
+import org.springframework.beans.BeanUtils;
+import com.mhp.service.AdminAuthService;
+import java.time.LocalDateTime;
+
 @Service
 public class WarnServiceImpl implements WarnService {
     @Autowired
     private WarnMapper warnMapper;
+    @Autowired
+    private AdminAuthService adminAuthService;
     
     /**
      * 分页查询预警
@@ -40,5 +49,26 @@ public class WarnServiceImpl implements WarnService {
         Long total = page.getTotal();
         List<CrRiskAssessment> records = page.getResult();
         return new PageResult(total, records);
+    }
+    /**
+     * 预警处理
+     * @param crWarnProcessDTO
+     * @return
+     */
+    @Override
+    public void process(CrWarnProcessDTO crWarnProcessDTO) {
+        CrWarnProcess crWarnProcess = new CrWarnProcess();
+        BeanUtils.copyProperties(crWarnProcessDTO, crWarnProcess);
+
+        //获取当前登录用户ID
+        Long userId = BaseContext.getCurrentId();
+        //设置处理人ID为当前登录用户ID
+        crWarnProcess.setHandlerId(userId);
+        //设置当前处理时间为当前时间
+        crWarnProcess.setProcessTime(LocalDateTime.now());
+        //设置处理状态为已处理
+        crWarnProcess.setStatus(1);
+        warnMapper.insert(crWarnProcess);
+        
     }
 }
