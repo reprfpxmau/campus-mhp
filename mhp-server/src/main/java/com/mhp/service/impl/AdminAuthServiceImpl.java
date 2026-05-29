@@ -10,7 +10,7 @@ import com.github.pagehelper.Page;
 import com.mhp.constant.MessageConstant;
 import com.mhp.dto.AdminLoginDTO;
 import com.mhp.entity.SysUser;
-import com.mhp.service.AdminService;
+import com.mhp.service.AdminAuthService;
 import com.mhp.utils.JwtUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ import java.util.List;
 
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminAuthServiceImpl implements AdminAuthService {
 
-    private static final Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AdminAuthServiceImpl.class);
 
     @Autowired
     private AdminMapper adminMapper;
@@ -51,14 +51,14 @@ public class AdminServiceImpl implements AdminService {
             return Result.error(MessageConstant.PASSWORD_ERROR);
         }
         // TODO: 校验账号禁用状态
-        // if (admin.getStatus() == 0) { return Result.error("账号已被禁用"); }
+         if (admin.getStatus() == 0) { return Result.error(MessageConstant.USER_STATUS_ERROR); }
 
         // TODO: 根据 roleId 区分角色（admin/counselor），而非硬编码 "admin"
-        // String role = admin.getRoleId() == 1 ? "admin" : "counselor";
-        String token = jwtUtil.createToken(admin.getUserId(), "admin");
+        String role = admin.getRoleId() == 1 ? "admin" : "counselor";
+        String token = jwtUtil.createToken(admin.getUserId(), role);
 
         // TODO: 返回前清除密码字段，避免泄露
-        // admin.setPassword(null);
+        admin.setPassword(null);
         LoginVO loginVO = new LoginVO();
         loginVO.setToken(token);
         loginVO.setUserInfo(admin);
@@ -66,17 +66,5 @@ public class AdminServiceImpl implements AdminService {
         return Result.success(loginVO);
     }
 
-    /**
-     * 分页查询用户
-     * @param userPageQueryDTO
-     * @return
-     */
-    @Override
-    public PageResult pageQuery(UserPageQueryDTO userPageQueryDTO) {
-        PageHelper.startPage(userPageQueryDTO.getPage(),userPageQueryDTO.getPageSize());
-        Page<SysUser> page = adminMapper.pageQuery(userPageQueryDTO);
-        long total = page.getTotal();
-        List<SysUser> records = page.getResult();
-        return new PageResult(total, records);
-    }
+
 }

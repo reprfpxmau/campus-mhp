@@ -14,10 +14,5 @@ public interface AdminMapper {
      * @return
      */
     SysUser login(String studentNo);
-    /**
-     * 分页查询用户
-     * @param userPageQueryDTO
-     * @return
-     */
-    Page<SysUser> pageQuery(UserPageQueryDTO userPageQueryDTO);
+
 }

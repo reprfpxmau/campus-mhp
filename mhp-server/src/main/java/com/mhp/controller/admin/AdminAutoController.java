@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mhp.result.Result;
 import com.mhp.dto.AdminLoginDTO;
-import com.mhp.service.AdminService;
+import com.mhp.service.AdminAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,10 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/admin/auth")
 @Tag(name = "管理员相关接口")
 @Slf4j
-public class AdminController {
+public class AdminAutoController {
 
     @Autowired
-    private AdminService adminService;
+    private AdminAuthService adminAuthService;
 
     /**
      * 管理员登录
@@ -32,7 +32,7 @@ public class AdminController {
     @Operation(summary = "管理员登录")
     public Result login(@RequestBody AdminLoginDTO adminLoginDTO) {
         log.info("管理员登录请求：{}", adminLoginDTO);
-        return adminService.login(adminLoginDTO);
+        return adminAuthService.login(adminLoginDTO);
     }
 
     

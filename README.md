@@ -16,7 +16,7 @@
 | 心理健康档案 | 学生全周期动态化电子档案，支持创建、维护、查询、统计 |
 | 心理测评 | 标准化量表管理、在线测评、自动评分（含正向/反向计分）、风险等级判定 |
 | 危机预警 | 规则配置、测评结果自动触发风险评估与预警事件、预警处理闭环 |
-| 在线咨询 | 咨询师排班、预约管理、咨询会话、记录归档 |
+| 在线咨询 | 咨询师排班、预约管理、WebSocket 实时聊天、咨询记录归档 |
 | 数据统计 | 工作台（概览卡片、待处理预警、今日预约）、数据统计（档案分布、学院咨询量、月度趋势图表） |
 
 ---
@@ -33,7 +33,7 @@
 | MyBatis | 3.0.3 | 持久层框架（手写 SQL + XML） |
 | PageHelper | 2.1.0 | 分页插件 |
 | MySQL | 8.0+ | 关系型数据库 |
-| Redis | 6.0+ | 缓存中间件 |
+| Redis | 6.0+ | Token会话、进度暂存、登录防刷、在线状态（RedisTemplate）+ 规则缓存、统计缓存（SpringCache注解） |
 | JWT (jjwt) | 0.12.5 | 登录认证 |
 | Druid | 1.2.20 | 数据库连接池 |
 | Knife4j | 4.5.0 | 接口文档（SpringDoc OpenAPI 3） |
@@ -68,7 +68,8 @@ campus-mhp/
 │   ├── 系统设计说明书.md
 │   ├── 项目脚手架说明.md
 │   ├── 开发流程.md
-│   └── 测试用例.md
+│   ├── 测试用例.md
+│   └── TODO.md                  # 待实现功能清单
 ├── sql/                            # 数据库脚本
 │   └── mhp_init.sql               # 初始化脚本（29张表 + 预置数据）
 ├── api-doc/                        # 接口文档
@@ -267,6 +268,14 @@ npm run build
 | 预约 | 排班查询 | GET | /user/schedule/{counselorId} |
 | 预约 | 创建预约 | POST | /user/appointment |
 | 预约 | 我的预约 | GET | /user/appointment/my |
+| 预约 | 取消预约 | POST | /user/appointment/cancel/{id} |
+| 聊天 | 创建会话 | POST | /user/chat/session |
+| 聊天 | 发送消息 | POST | /user/chat/send |
+| 聊天 | 历史消息 | GET | /user/chat/messages/{sessionId} |
+| 聊天 | 结束会话 | POST | /user/chat/end/{sessionId} |
+| 预警 | 我的预警 | GET | /user/warn/my |
+| 咨询记录 | 记录列表 | GET | /user/consult/my-records |
+| 行为日志 | 上报事件 | POST | /user/behavior/log |
 
 完整的请求参数和返回数据说明见 `api-doc/` 目录下的 HTML 接口文档。
 
@@ -279,7 +288,7 @@ npm run build
 | 系统设计说明书 | docs/系统设计说明书.md | 总体设计、功能模块设计、数据库设计、UML 图 |
 | 项目脚手架说明 | docs/项目脚手架说明.md | 技术栈、项目结构、核心配置、JWT 鉴权流程 |
 | 开发流程指南 | docs/开发流程.md | 环境搭建、模块开发顺序、评分引擎实现、调试技巧 |
-| 测试用例 | docs/测试用例.md | 77 条测试用例，覆盖 22 个子功能 |
+| 测试用例 | docs/测试用例.md | 97 条测试用例，覆盖 22 个子功能 |
 | 管理端接口文档 | api-doc/管理端接口文档.html | 管理端全部 API 详细定义 |
 | 用户端接口文档 | api-doc/用户端接口文档.html | 用户端全部 API 详细定义 |
 

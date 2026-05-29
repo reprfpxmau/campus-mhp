@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mhp.service.AdminService;
+import com.mhp.service.AdminAuthService;
 import com.mhp.dto.UserPageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springdoc.core.annotations.ParameterObject;
+import com.mhp.service.UserService;
 
 @RestController
 @RequestMapping("/admin/user")
@@ -19,7 +20,7 @@ import org.springdoc.core.annotations.ParameterObject;
 @Slf4j
 public class UserController {
     @Autowired
-    private AdminService adminService;
+    private UserService userService;
     /**
      * 用户分页查询
      * @param userPageQueryDTO
@@ -29,7 +30,7 @@ public class UserController {
     @Operation(summary = "用户分页查询")
     public Result<PageResult> page(@ParameterObject UserPageQueryDTO userPageQueryDTO) {
         log.info("用户分页查询请求：{}", userPageQueryDTO);
-        PageResult pageResult = adminService.pageQuery(userPageQueryDTO);
+        PageResult pageResult = userService.pageQuery(userPageQueryDTO);
         return Result.success(pageResult);
     }
 }

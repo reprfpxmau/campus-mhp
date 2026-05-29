@@ -11,4 +11,10 @@ public interface WarnService {
      * @return
      */
     PageResult pageQuery(WarnPageQueryDTO warnPageQueryDTO);
+    /**
+     * 预警评估详情
+     * @param assessmentId
+     * @return
+     */
+    PageResult getDetail(String assessmentId);
 }
