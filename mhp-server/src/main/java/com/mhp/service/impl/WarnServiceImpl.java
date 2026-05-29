@@ -15,15 +15,13 @@ import java.util.List;
 import com.mhp.context.BaseContext;
 import com.mhp.dto.CrWarnProcessDTO;
 import org.springframework.beans.BeanUtils;
-import com.mhp.service.AdminAuthService;
 import java.time.LocalDateTime;
 
 @Service
 public class WarnServiceImpl implements WarnService {
     @Autowired
     private WarnMapper warnMapper;
-    @Autowired
-    private AdminAuthService adminAuthService;
+
     
     /**
      * 分页查询预警

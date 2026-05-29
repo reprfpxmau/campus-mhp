@@ -20,4 +20,17 @@ public interface UserService {
      * @return
      */
     void add(SysUser sysUser);
+    /**
+     * 修改用户
+     * @param sysUser
+     * @return
+     */
+    void update(SysUser sysUser);
+    /**
+     * 启用/禁用用户
+     * @param status
+     * @param userId
+     * @return
+     */
+    void updateStatus(Integer status,Long userId);
 }

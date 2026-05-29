@@ -10,11 +10,15 @@ import com.mhp.result.PageResult;
 import com.mhp.result.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springdoc.core.annotations.ParameterObject;
 import com.mhp.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mhp.entity.SysUser;
+
 
 
 @RestController
@@ -45,8 +49,33 @@ public class UserController {
     @PostMapping
     public Result add(@RequestBody SysUser sysUser) {
         //TODO: process POST request
+        log.info("新增用户请求：{}", sysUser);
         userService.add(sysUser);
         return Result.success(sysUser);
     }
+    /**
+     * 修改用户
+     * @param userId 用户ID
+     * @return
+     */
+    @PutMapping
+    @Operation(summary = "修改用户")
+    public Result update(@RequestBody SysUser sysUser) {
+        log.info("修改用户请求：{}", sysUser);
+        userService.update(sysUser);
+        return Result.success(sysUser);
+    }
     
+    /**
+     * 启用/禁用用户
+     * @param userId 用户ID
+     * @return
+     */
+    @PostMapping("status/{status}")
+    @Operation(summary = "启用/禁用用户")
+    public Result updateStatus(@PathVariable Integer status, @RequestParam Long id) {
+        log.info("启用/禁用用户请求：{}，用户ID：{}", status, id);
+        userService.updateStatus(status, id);
+        return Result.success();
+    }
 }

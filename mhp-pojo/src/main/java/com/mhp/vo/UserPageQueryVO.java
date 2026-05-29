@@ -15,6 +15,7 @@ public class UserPageQueryVO {
     private LocalDateTime createTime;
 
     // 角色表字段
+    private Long roleId;
     private String roleName;
 
 }

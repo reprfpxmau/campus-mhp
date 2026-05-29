@@ -20,5 +20,12 @@ public interface UserMapper {
      * @param sysUser
      * @return
      */
-    int insert(SysUser sysUser);
+    void insert(SysUser sysUser);
+
+    /**
+     * 修改用户
+     * @param sysUser
+     * @return
+     */
+    void update(SysUser sysUser);
 }

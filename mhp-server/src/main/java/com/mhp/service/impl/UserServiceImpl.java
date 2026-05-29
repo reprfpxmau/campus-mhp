@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import com.mhp.vo.UserPageQueryVO;
+import com.mhp.mapper.SysUserRoleMapper;
+import com.mhp.entity.SysUserRole;
 
 
 
@@ -20,6 +22,8 @@ import com.mhp.vo.UserPageQueryVO;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private SysUserRoleMapper sysUserRoleMapper;
     /**
      * 分页查询用户
      * @param userPageQueryDTO
@@ -46,5 +50,38 @@ public class UserServiceImpl implements UserService {
         //默认创建时间为当前时间
         sysUser.setCreateTime(LocalDateTime.now());
         userMapper.insert(sysUser);
+    }
+    /**
+     * 修改用户
+     * @param sysUser
+     * @return
+     */
+    @Override
+    public void update(SysUser sysUser) {
+
+        //默认更新时间为当前时间
+        sysUser.setUpdateTime(LocalDateTime.now());
+        userMapper.update(sysUser);
+        //更新用户角色关联
+        SysUserRole sysUserRole = SysUserRole.builder()
+                .userId(sysUser.getUserId())
+                .roleId(sysUser.getRoleId())
+                .build();
+        sysUserRoleMapper.update(sysUserRole);
+    }
+
+    /**
+     * 启用/禁用用户
+     * @param status
+     * @param userId
+     * @return
+     */
+    @Override
+    public void updateStatus(Integer status,Long userId) {
+        SysUser sysUser = SysUser.builder()
+                .userId(userId)
+                .status(status)
+                .build();
+        userMapper.update(sysUser);
     }
 }

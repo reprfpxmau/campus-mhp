@@ -30,4 +30,37 @@
         insert into sys_user (real_name, student_no, password, role_id,phone,status, create_time)
         values (#{realName}, #{studentNo}, #{password}, #{roleId},#{phone},#{status},#{createTime})
     </insert>    
-</mapper>
+
+    <!-- update --> 
+
+    <update id="update" parameterType="com.mhp.entity.SysUser">
+        update sys_user
+        <set>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                student_no = #{studentNo},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="roleId != null">
+                role_id = #{roleId},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+    
+    
+    
+    </mapper>
