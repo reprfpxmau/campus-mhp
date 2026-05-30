@@ -6,6 +6,7 @@ import com.mhp.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import com.mhp.vo.UserPageQueryVO;
 import com.mhp.vo.UserVO;
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -36,4 +37,17 @@ public interface UserMapper {
      * @return
      */
     UserVO selectByUserId(Long userId);
+
+    /**
+     * 根据选择列表查询是否有启用用户
+     * @param ids
+     * @return
+     */
+    Long countByIds(List<Long> ids);
+    /**
+     * 删除用户
+     * @param ids
+     * @return
+     */
+    void deleteBatch(List<Long> ids);
 }

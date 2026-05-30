@@ -16,8 +16,8 @@ import com.mhp.vo.UserPageQueryVO;
 import com.mhp.mapper.SysUserRoleMapper;
 import com.mhp.entity.SysUserRole;
 import com.mhp.vo.UserVO;
-import com.mhp.result.Result;
-import org.springframework.beans.BeanUtils;
+import com.mhp.constant.MessageConstant;
+import com.mhp.exception.BusinessException;
 
 
 
@@ -97,5 +97,20 @@ public class UserServiceImpl implements UserService {
         UserVO userVO = new UserVO();
         userVO = userMapper.selectByUserId(userId);
         return userVO;
+    }
+
+    /**
+     * 删除用户
+     * @param userId
+     * @return
+     */
+    @Override
+    public void deleteBatch(List<Long> ids) {
+        
+        Long count = userMapper.countByIds(ids);
+        if(count > 0) {
+            throw new BusinessException(MessageConstant.ENABLED_USER_CANNOT_BE_DELETED);
+        }
+        userMapper.deleteBatch(ids);
     }
 }

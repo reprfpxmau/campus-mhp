@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springdoc.core.annotations.ParameterObject;
 import com.mhp.service.UserService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.mhp.entity.SysUser;
 import com.mhp.vo.UserVO;
 import com.mhp.constant.MessageConstant;
+import java.util.List;
 
 
 
@@ -92,6 +94,13 @@ public class UserController {
     public Result<UserVO> getDetail(@PathVariable Long id) {
         UserVO userVO = userService.getDetail(id);
         return Result.success(userVO);
+    }
+
+    @DeleteMapping("batch")
+    @Operation(summary = "删除用户")
+    public Result delete(@RequestParam List<Long> ids) {
+        userService.deleteBatch(ids);
+        return Result.success();
     }
     
 }

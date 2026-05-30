@@ -5,6 +5,7 @@ import com.mhp.dto.UserPageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.entity.SysUser;
 import com.mhp.vo.UserVO;
+import java.util.List;
 
 
 
@@ -41,4 +42,11 @@ public interface UserService {
      * @return
      */
     UserVO getDetail(Long userId);
+
+    /**
+     * 批量删除用户
+     * @param ids
+     * @return
+     */
+    void deleteBatch(List<Long> ids);
 }

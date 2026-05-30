@@ -73,4 +73,24 @@
         left join sys_role as sr on su.role_id = sr.role_id
         where user_id = #{userId}
     </select>    
-    </mapper>
+
+    <!-- 查询是否存在启用用户 --> 
+    <select id="countByIds" resultType="java.lang.Long">
+        select count(*) 
+        from sys_user 
+        where user_id in 
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        and status = 1
+    </select>    
+
+
+    <!-- 批量删除用户 --> 
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from sys_user where user_id in 
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>    
+</mapper>
