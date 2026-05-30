@@ -13,8 +13,8 @@ public class ArchivePageQueryDTO implements Serializable {
     private String name;
     // 学号
     private String studentNo;
-    // 学院
-    private String college;
+    // 学院ID
+    private Long collegeId;
     // 档案状态
     private String archiveStatus;
 }

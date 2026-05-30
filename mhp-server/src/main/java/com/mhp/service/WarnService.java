@@ -3,6 +3,7 @@ import org.springframework.stereotype.Service;
 import com.mhp.dto.WarnPageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.dto.CrWarnProcessDTO;
+import com.mhp.entity.CrRiskAssessment;
 
 @Service
 public interface WarnService {
@@ -11,13 +12,15 @@ public interface WarnService {
      * @param warnPageQueryDTO
      * @return
      */
+    
     PageResult pageQuery(WarnPageQueryDTO warnPageQueryDTO);
     /**
      * 预警评估详情
      * @param assessmentId
      * @return
      */
-    PageResult getDetail(String assessmentId);
+    CrRiskAssessment getDetail(Long assessmentId);
+
     /**
      * 预警处理
      * @param crWarnProcessDTO

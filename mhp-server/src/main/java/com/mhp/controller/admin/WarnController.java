@@ -17,6 +17,7 @@ import com.mhp.result.PageResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mhp.dto.CrWarnProcessDTO;
+import com.mhp.entity.CrRiskAssessment;
 
 
 
@@ -51,10 +52,10 @@ public class WarnController {
      * @return
      */
     @GetMapping("/detail/{assessmentId}")
-    public Result<PageResult> getDetail(@PathVariable String assessmentId) {
+    public Result<CrRiskAssessment> getDetail(@PathVariable Long assessmentId) {
         log.info("预警评估详情请求：{}", assessmentId);
-        PageResult pageResult = warnService.getDetail(assessmentId);
-        return Result.success(pageResult);
+        CrRiskAssessment crRiskAssessment = warnService.getDetail(assessmentId);
+        return Result.success(crRiskAssessment);
     }
 
     /**

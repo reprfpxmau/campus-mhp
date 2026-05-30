@@ -52,13 +52,10 @@ public class WarnServiceImpl implements WarnService {
      * @return
      */
     @Override
-    public PageResult getDetail(String assessmentId) {
-        Page<CrRiskAssessment> page = warnMapper.getDetail(assessmentId);
-        Long total = page.getTotal();
-        List<CrRiskAssessment> records = page.getResult();
-        return new PageResult(total, records);
+    public CrRiskAssessment getDetail(Long assessmentId) {
+        CrRiskAssessment crRiskAssessment = warnMapper.getDetail(assessmentId);
+        return crRiskAssessment;
     }
-    
     /**
      * 预警处理
      * @param crWarnProcessDTO

@@ -11,8 +11,8 @@
             <if test="studentNo != null and studentNo != ''">
                 and student_no like concat('%',#{studentNo},'%')
             </if>
-            <if test="college != null and college != ''">
-                and college like concat('%',#{college},'%')
+            <if test="collegeId != null">
+                and college_id = #{collegeId}
             </if>
             <if test="archiveStatus != null">
                 and archive_status like concat('%',#{archiveStatus},'%')
@@ -20,4 +20,29 @@
         </where>
         order by create_time desc
     </select>
+
+    <!-- update -->
+
+    <update id="update">
+        update mh_archive
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                student_no = #{studentNo},
+            </if>
+            <if test="collegeId != null">
+                college_id = #{collegeId},
+            </if>
+            <if test="classId != null">
+                class_id = #{classId},
+            </if>
+            <if test="archiveStatus != null">
+                archive_status = #{archiveStatus}
+            </if>
+        </set>
+        where archive_id = #{archiveId}
+    </update>
+
 </mapper>

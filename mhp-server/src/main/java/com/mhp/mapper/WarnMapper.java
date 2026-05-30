@@ -19,14 +19,14 @@ public interface WarnMapper {
     /**
      * 预警评估详情
      * @param assessmentId 预警评估ID
-     * @return 分页结果
+     * @return 预警评估详情对象
      */
     @Select("select * from cr_risk_assessment where assessment_id = #{assessmentId}")
-       Page<CrRiskAssessment> getDetail(String assessmentId);
+    CrRiskAssessment getDetail(Long assessmentId);
     
     /**
      * 预警处理
-     * @param crWarnProcessDTO 预警处理参数
+     * @param crWarnProcess 预警处理对象
      * @return
      */
     void insert(CrWarnProcess crWarnProcess);

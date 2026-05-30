@@ -31,4 +31,10 @@ public interface ArchiveMapper {
     @Select("select * from mh_archive where student_id = #{studentId}")
     MhArchive selectByStudentId(Long studentId);
 
+    /**
+     * 更新档案
+     * @param mhArchive 档案信息
+     * @return
+     */
+    void update(MhArchive mhArchive);
 }

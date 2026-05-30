@@ -71,7 +71,7 @@ campus-mhp/
 │   ├── 测试用例.md
 │   └── TODO.md                  # 待实现功能清单
 ├── sql/                            # 数据库脚本
-│   └── mhp_init.sql               # 初始化脚本（30张表 + 预置数据）
+│   └── mhp_init.sql               # 初始化脚本（32张表 + 预置数据）
 ├── api-doc/                        # 接口文档
 │   ├── 管理端接口文档.html
 │   └── 用户端接口文档.html
@@ -112,11 +112,11 @@ campus-mhp/
 
 ## 数据库设计
 
-系统共 30 张业务表，遵循第三范式（3NF），采用 InnoDB 存储引擎，字符集 utf8mb4。
+系统共 32 张业务表，遵循第三范式（3NF），采用 InnoDB 存储引擎，字符集 utf8mb4。
 
 | 模块 | 表数 | 核心表 |
 |------|------|--------|
-| 用户认证 | 6 | sys_user, sys_role, sys_login_log |
+| 用户认证 | 8 | sys_user, sys_role, sys_user_role, sys_login_log, sys_college, sys_class |
 | 心理健康档案 | 4 | mh_archive, mh_consult_summary |
 | 心理测评 | 8 | psy_scale, psy_question, psy_exam_record, psy_report |
 | 在线咨询 | 5 | cs_appointment, cs_consult_session, cs_consult_record |
@@ -156,7 +156,7 @@ mysql -u root -p
 source sql/mhp_init.sql
 ```
 
-执行后自动创建 `mhp_platform` 数据库、30 张表和预置数据（管理员、咨询师、学生账号、量表、预警规则等）。
+执行后自动创建 `mhp_platform` 数据库、32 张表和预置数据（管理员、咨询师、学生账号、量表、预警规则等）。
 
 ### 2. 后端启动
 
@@ -234,10 +234,12 @@ npm run build
 | 用户 | 启用/禁用 | POST | /admin/user/status/{status}?id= |
 | 用户 | 删除 | DELETE | /admin/user/batch?ids=1,2,3 |
 | 用户 | 咨询师列表 | GET | /admin/counselor/list |
+| 基础 | 学院列表 | GET | /admin/college/list |
+| 基础 | 班级列表 | GET | /admin/class/list?collegeId= |
 | 档案 | 分页查询 | GET | /admin/archive/page |
 | 档案 | 详情 | GET | /admin/archive/{id} |
 | 档案 | 按学号查档案 | GET | /admin/archive/student/{studentId} |
-| 档案 | 编辑档案 | POST | /admin/archive |
+| 档案 | 编辑档案 | PUT | /admin/archive |
 | 量表 | 分页查询 | GET | /admin/scale/page |
 | 量表 | 新增 | POST | /admin/scale |
 | 量表 | 题目管理 | POST/DELETE | /admin/scale/question |

@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 
 /**
  * 用户档案实体类
- * 索引： idx_student_id, idx_student_no, idx_college, idx_archive_status
+ * 索引： idx_student_id, idx_student_no, idx_college_id, idx_archive_status
  */
 @Data
 @Builder
@@ -27,10 +27,10 @@ public class MhArchive implements Serializable {
     private String name;
     // 性别
     private Integer gender;
-    // 学院
-    private String college;
-    // 班级
-    private String className;
+    // 学院ID
+    private Long collegeId;
+    // 班级ID
+    private Long classId;
     // 出生日期
     private LocalDate birthDate;
     // 家庭结构

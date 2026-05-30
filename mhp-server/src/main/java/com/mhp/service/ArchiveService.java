@@ -22,16 +22,16 @@ public interface ArchiveService {
     MhArchive selectById(Long id);
 
     /**
-     * 更新档案
-     * @param mhArchive 档案信息
-     * @return
-     */
-    void update(MhArchive mhArchive);
-
-    /**
      * 根据学号查询档案详情
      * @param studentId 学生ID
      * @return 档案详情
      */
     MhArchive selectByStudentId(Long studentId);
+
+    /**
+     * 更新档案
+     * @param mhArchive 档案信息
+     * @return
+     */
+    void update(MhArchive mhArchive);
 }

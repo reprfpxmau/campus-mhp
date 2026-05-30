@@ -4,7 +4,7 @@
 
 <mapper namespace="com.mhp.mapper.WarnMapper">
     <select id="pageQuery" resultType="com.mhp.vo.WarnPageQueryVO">
-        select 
+        select
             cwe.*,
             su.student_no as studentNo,
             su.real_name as studentName
@@ -27,11 +27,11 @@
         order by cwe.create_time desc
     </select>
 
-    <!-- insert --> 
 
+    <!-- insert -->
     <insert id="insert">
         insert into cr_warn_process (event_id,handler_id, process_type, process_content, process_result, follow_up_plan,process_time,status)
         values (#{eventId}, #{handlerId}, #{processType}, #{processContent}, #{processResult}, #{followUpPlan},#{processTime},#{status})
     </insert>
-    
+
 </mapper>

@@ -57,6 +57,6 @@ public class ArchiveServiceImpl implements ArchiveService {
      */
     @Override
     public void update(MhArchive mhArchive) {
-        //archiveMapper.update(mhArchive);
+        archiveMapper.update(mhArchive);
     }
 }
