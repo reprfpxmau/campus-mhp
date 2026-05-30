@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysRole implements Serializable {
+public class SysRole{
     // 角色ID
     private Long roleId;
     // 角色编码ADMIN/COUNSELOR/STUDENT（管理员/咨询师/咨询学生）

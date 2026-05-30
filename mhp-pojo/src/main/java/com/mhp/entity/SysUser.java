@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysUser implements Serializable {
+public class SysUser{
     // 主键
     private Long userId;
     // 学号/工号

@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysUserProfile implements Serializable {
+public class SysUserProfile{
     // 主键
     private Long profileId;
     // 用户ID

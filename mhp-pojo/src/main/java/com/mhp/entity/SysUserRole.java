@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysUserRole implements Serializable {
+public class SysUserRole{
     // 用户ID
     private Long userId;
     // 角色ID

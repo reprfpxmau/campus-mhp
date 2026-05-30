@@ -13,5 +13,4 @@ public interface ExamMapper {
      * @return 分页结果
      */
     Page<ExamPageQueryVO> pageQuery(ExamPageQueryDTO examPageQueryDTO);
-    
 }

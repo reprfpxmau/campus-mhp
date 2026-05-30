@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
+import org.springdoc.core.annotations.ParameterObject;
 
 @RestController
 @RequestMapping("/admin/login-log")
@@ -25,7 +26,7 @@ public class LoginLogController {
      * @return 分页结果
      */
     @GetMapping("/page")
-    public Result<PageResult> pageQuery(AdminLoginLogDTO adminLoginLogDTO) {
+    public Result<PageResult> pageQuery(@ParameterObject AdminLoginLogDTO adminLoginLogDTO) {
         PageResult pageResult = loginLogService.pageQuery(adminLoginLogDTO);
         return Result.success(pageResult);
     }

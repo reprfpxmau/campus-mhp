@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysLoginLog implements Serializable {
+public class SysLoginLog{
     // 主键
     private Long logId;
     // 用户ID

@@ -7,8 +7,10 @@ import com.mhp.result.PageResult;
 import com.mhp.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.dto.ExamPageQueryDTO;
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import java.util.List;
+import com.github.pagehelper.Page;
+
 
 
 
@@ -24,6 +26,7 @@ public class ExamServiceImpl implements ExamService {
      */
     @Override
     public PageResult pageQuery(ExamPageQueryDTO examPageQueryDTO) {
+        PageHelper.startPage(examPageQueryDTO.getPage(), examPageQueryDTO.getPageSize());
         Page<ExamPageQueryVO> page = examMapper.pageQuery(examPageQueryDTO);
         Long total = page.getTotal();
         List<ExamPageQueryVO> records = page.getResult();
