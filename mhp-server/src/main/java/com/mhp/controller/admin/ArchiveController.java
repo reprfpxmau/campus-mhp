@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.mhp.dto.ArchivePageQueryDTO;
 import com.mhp.result.PageResult;
@@ -69,7 +69,7 @@ public class ArchiveController {
      * @param mhArchive
      * @return
      */
-    @PostMapping
+    @PutMapping
     public Result update(@RequestBody MhArchive mhArchive) {
         log.info("编辑档案：{}", mhArchive);
         archiveService.update(mhArchive);

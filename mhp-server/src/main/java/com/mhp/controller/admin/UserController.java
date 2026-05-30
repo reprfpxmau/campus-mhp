@@ -20,7 +20,6 @@ import com.mhp.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mhp.entity.SysUser;
 import com.mhp.vo.UserVO;
-import com.mhp.constant.MessageConstant;
 import java.util.List;
 
 
@@ -93,6 +92,11 @@ public class UserController {
         return Result.success(userVO);
     }
 
+    /**
+     * 删除用户
+     * @param ids 用户ID列表
+     * @return
+     */
     @DeleteMapping("batch")
     @Operation(summary = "删除用户")
     public Result delete(@RequestParam List<Long> ids) {

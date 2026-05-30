@@ -58,6 +58,7 @@ public class WarnServiceImpl implements WarnService {
         List<CrRiskAssessment> records = page.getResult();
         return new PageResult(total, records);
     }
+    
     /**
      * 预警处理
      * @param crWarnProcessDTO

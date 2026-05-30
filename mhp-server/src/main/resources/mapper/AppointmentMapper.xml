@@ -18,7 +18,10 @@
             and ca.status = #{status}
         </if>
         <if test="appointmentDate != null and appointmentDate != ''">
-            and ca.appointment_date = #{appointmentDate}    
+            and ca.appointment_date = #{appointmentDate}
+        </if>
+        <if test="counselorId != null">
+            and ca.counselor_id = #{counselorId}
         </if>
     </where>
     order by create_time desc

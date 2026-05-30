@@ -7,11 +7,12 @@ import com.github.pagehelper.PageHelper;
 import com.mhp.dto.UserPageQueryDTO;
 import com.mhp.entity.SysUser;
 import com.mhp.result.PageResult;
-import com.mhp.result.Result;
 import com.mhp.service.UserService;
 import com.mhp.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import com.mhp.vo.UserPageQueryVO;
 import com.mhp.mapper.SysUserRoleMapper;
@@ -105,9 +106,10 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 删除用户
-     * @param userId
+     * @param ids
      * @return
      */
+    @Transactional
     @Override
     public void deleteBatch(List<Long> ids) {
         if(ids.contains(1L)) {
@@ -117,6 +119,13 @@ public class UserServiceImpl implements UserService {
         if(count > 0) {
             throw new BusinessException(MessageConstant.ENABLED_USER_CANNOT_BE_DELETED);
         }
+        //TODO 删除用户关联的其他数据
+        //删除用户角色关联
+        //sysUserRoleMapper.deleteBatch(ids);
+        //删除用户档案
+        //userMapper.deleteBatch(ids);
+        
+        //删除用户
         userMapper.deleteBatch(ids);
     }
 }

@@ -58,8 +58,8 @@ public class WarnController {
     }
 
     /**
-     * 预警评估详情
-     * @param assessmentId
+     * 预警处理
+     * @param crWarnProcessDTO
      * @return
      */
     @PostMapping("process")

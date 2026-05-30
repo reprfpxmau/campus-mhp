@@ -232,8 +232,12 @@ npm run build
 | 用户 | 新增 | POST | /admin/user |
 | 用户 | 修改 | PUT | /admin/user |
 | 用户 | 启用/禁用 | POST | /admin/user/status/{status}?id= |
+| 用户 | 删除 | DELETE | /admin/user/batch?ids=1,2,3 |
+| 用户 | 咨询师列表 | GET | /admin/counselor/list |
 | 档案 | 分页查询 | GET | /admin/archive/page |
 | 档案 | 详情 | GET | /admin/archive/{id} |
+| 档案 | 按学号查档案 | GET | /admin/archive/student/{studentId} |
+| 档案 | 编辑档案 | POST | /admin/archive |
 | 量表 | 分页查询 | GET | /admin/scale/page |
 | 量表 | 新增 | POST | /admin/scale |
 | 量表 | 题目管理 | POST/DELETE | /admin/scale/question |
@@ -241,6 +245,7 @@ npm run build
 | 测评 | 报告详情 | GET | /admin/exam/report/{recordId} |
 | 预约 | 分页查询 | GET | /admin/appointment/page |
 | 预约 | 确认/拒绝 | POST | /admin/appointment/confirm/{id} |
+| 预约 | 改派咨询师 | PUT | /admin/appointment |
 | 预警 | 分页查询 | GET | /admin/warn/page |
 | 预警 | 评估详情 | GET | /admin/warn/detail/{assessmentId} |
 | 预警 | 分发预警 | POST | /admin/warn/distribute |
@@ -332,4 +337,4 @@ npm run build
 ---
 
 **版本**: v1.0.0
-**最后更新**: 2026-05-28
+**最后更新**: 2026-05-30

@@ -14,4 +14,6 @@ public class AppointmentPageQueryDTO implements Serializable {
     private Integer status;
     // 预约日期
     private String appointmentDate;
+    // 咨询师ID（用于角色过滤）
+    private Long counselorId;
 }
