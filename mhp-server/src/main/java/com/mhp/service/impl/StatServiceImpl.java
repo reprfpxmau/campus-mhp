@@ -16,8 +16,7 @@ public class StatServiceImpl implements StatService {
      */
     @Override
     public Result<StatVO> overview() {
-        StatVO statVO = new StatVO();
-        
+        StatVO statVO = new StatVO();  
        return Result.success(statVO);
     }
     

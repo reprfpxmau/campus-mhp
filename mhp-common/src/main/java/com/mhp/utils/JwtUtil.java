@@ -49,4 +49,21 @@ public class JwtUtil {
             return null;
         }
     }
+
+    /**
+     * 解析JWT令牌，获取角色
+     */
+    public static String parseRole(String token, String secret) {
+        try {
+            SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
+            Claims claims = Jwts.parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return claims.get("role", String.class);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

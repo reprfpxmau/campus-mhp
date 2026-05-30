@@ -11,4 +11,5 @@ public class WarnPageQueryDTO implements Serializable {
     private String studentName;
     private String eventLevel;
     private String eventStatus;
+    private Long handlerId;
 }

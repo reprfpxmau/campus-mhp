@@ -20,6 +20,9 @@
             <if test="eventStatus != null">
                 and cwe.event_status = #{eventStatus}
             </if>
+            <if test="handlerId != null">
+                and cwe.handler_id = #{handlerId}
+            </if>
         </where>
         order by cwe.create_time desc
     </select>

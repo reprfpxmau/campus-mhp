@@ -30,6 +30,7 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         token = token.substring(7);
 
         Long userId = JwtUtil.parseToken(token, jwtProperties.getSecret());
+        String role = JwtUtil.parseRole(token, jwtProperties.getSecret());
         if (userId == null) {
             log.warn("Token解析失败：{}", request.getRequestURI());
             response.setStatus(401);
@@ -37,7 +38,8 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         }
 
         BaseContext.setCurrentId(userId);
-        log.debug("用户{}访问{}", userId, request.getRequestURI());
+        BaseContext.setCurrentRole(role);
+        log.debug("用户{}(角色{})访问{}", userId, role, request.getRequestURI());
         return true;
     }
 
@@ -46,5 +48,6 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
                                HttpServletResponse response,
                                Object handler, Exception ex) {
         BaseContext.removeCurrentId();
+        BaseContext.removeCurrentRole();
     }
 }

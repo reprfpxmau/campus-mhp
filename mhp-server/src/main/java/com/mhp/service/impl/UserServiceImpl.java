@@ -7,6 +7,7 @@ import com.github.pagehelper.PageHelper;
 import com.mhp.dto.UserPageQueryDTO;
 import com.mhp.entity.SysUser;
 import com.mhp.result.PageResult;
+import com.mhp.result.Result;
 import com.mhp.service.UserService;
 import com.mhp.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void updateStatus(Integer status,Long userId) {
+        if(userId.equals(1L)) {
+            throw new BusinessException(MessageConstant.ADMIN_ACCOUNT_CANNOT_BE_ENABLED_OR_DISABLED);
+        }
         SysUser sysUser = SysUser.builder()
                 .userId(userId)
                 .status(status)
@@ -106,7 +110,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void deleteBatch(List<Long> ids) {
-        
+        if(ids.contains(1L)) {
+            throw new BusinessException(MessageConstant.ADMIN_ACCOUNT_CANNOT_BE_DELETED);
+        }
         Long count = userMapper.countByIds(ids);
         if(count > 0) {
             throw new BusinessException(MessageConstant.ENABLED_USER_CANNOT_BE_DELETED);

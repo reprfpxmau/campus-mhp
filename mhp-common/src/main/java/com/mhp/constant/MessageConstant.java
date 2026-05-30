@@ -7,5 +7,6 @@ public class MessageConstant {
     public static final String USER_STATUS_ERROR = "账号已被禁用";
 
     public static final String ADMIN_ACCOUNT_CANNOT_BE_ENABLED_OR_DISABLED = "初始管理员账号不能禁用";
+    public static final String ADMIN_ACCOUNT_CANNOT_BE_DELETED = "初始管理员账号不能删除";
     public static final String ENABLED_USER_CANNOT_BE_DELETED = "所选用户中包含启用用户";
 }

@@ -30,12 +30,22 @@ public class WarnServiceImpl implements WarnService {
      */
     @Override
     public PageResult pageQuery(WarnPageQueryDTO warnPageQueryDTO) {
+        // 获取当前登录的用户id和角色
+        Long userId = BaseContext.getCurrentId();
+        String role = BaseContext.getCurrentRole();
+        // 咨询师只查自己被分配的预警
+        if("counselor".equals(role)) {
+            warnPageQueryDTO.setHandlerId(userId);
+        }
         PageHelper.startPage(warnPageQueryDTO.getPage(),warnPageQueryDTO.getPageSize());
         Page<WarnPageQueryVO> page = warnMapper.pageQuery(warnPageQueryDTO);
         Long total = page.getTotal();
         List<WarnPageQueryVO> records = page.getResult();
         return new PageResult(total, records);
     }
+
+
+
     /**
      * 预警评估详情
      * @param assessmentId

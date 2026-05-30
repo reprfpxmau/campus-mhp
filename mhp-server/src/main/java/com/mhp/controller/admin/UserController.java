@@ -79,9 +79,6 @@ public class UserController {
     @Operation(summary = "启用/禁用用户")
     public Result updateStatus(@PathVariable Integer status, @RequestParam Long id) {
         log.info("启用/禁用用户请求：{}，用户ID：{}", status, id);
-        if(id == 1) {
-            return Result.error(MessageConstant.ADMIN_ACCOUNT_CANNOT_BE_ENABLED_OR_DISABLED);
-        }
         userService.updateStatus(status, id);
         return Result.success();
     }
