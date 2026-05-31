@@ -2,6 +2,7 @@ package com.mhp.service;
 
 import org.springframework.stereotype.Service;
 import com.mhp.dto.ScalePageQueryDTO;
+import com.mhp.vo.ScaleVO;
 import com.mhp.result.PageResult;
 import com.mhp.entity.PsyScale;
 
@@ -29,4 +30,10 @@ public interface ScaleService {
      * @param scaleId 量表ID
      */
     void updateStatus(Integer status, Long scaleId);
+    /**
+     * 根据量表ID查询
+     * @param scaleId 量表ID
+     * @return 量表
+     */
+    ScaleVO selectById(Long scaleId);
 }

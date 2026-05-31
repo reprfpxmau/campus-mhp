@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.service.ScaleService;
 import com.mhp.dto.ScalePageQueryDTO;
 import com.mhp.entity.PsyScale;
+import com.mhp.vo.ScaleVO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,5 +72,17 @@ public class ScaleController {
         log.info("启用/禁用心理量表：status={}, id={}", status, id);
         scaleService.updateStatus(status, id);
         return Result.success();
+    }
+
+    /**
+     * 获取量表详情
+     * @param id 量表ID
+     * @return 量表状态 选项列表
+     */
+    @GetMapping("/{id}")
+    public Result<ScaleVO> detail(@PathVariable Long id) {
+        log.info("获取量表详情：id={}", id);
+        ScaleVO scaleVO = scaleService.selectById(id);
+        return Result.success(scaleVO);
     }
 }

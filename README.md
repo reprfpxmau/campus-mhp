@@ -260,6 +260,29 @@ npm run build
 | 统计 | 月度趋势 | GET | /admin/stat/monthly-exam |
 | 通用 | 文件上传 | POST | /admin/common/upload |
 
+### 管理端接口 - 关键参数说明
+
+> 以下列出需要传路径参数或查询参数的接口，Body 参数见 `api-doc/管理端接口文档.html`。
+
+| 接口 | 路径参数 | 查询参数 | 说明 |
+|------|---------|---------|------|
+| 用户详情 | `id` (Long) | — | 用户ID |
+| 用户启用/禁用 | `status` (Integer) | `id` (Long) | 0=停用 1=启用，id=用户ID |
+| 用户删除 | — | `ids` (String) | 多个用逗号分隔，如 `1,2,3` |
+| 班级列表 | — | `collegeId` (Long) | 按学院筛选，不传返回全部 |
+| 档案详情 | `id` (Long) | — | 档案ID |
+| 按学号查档案 | `studentId` (Long) | — | 学生用户ID |
+| 档案删除 | — | `ids` (String) | 多个用逗号分隔 |
+| 量表详情 | `id` (Long) | — | 量表ID |
+| 量表启用/停用 | `status` (Integer) | `id` (Long) | 0=停用 1=启用，id=量表ID |
+| 删除题目 | `id` (Long) | — | 题目ID |
+| 量表删除 | — | `ids` (String) | 多个用逗号分隔 |
+| 测评报告 | `recordId` (Long) | — | 测评记录ID |
+| 确认预约 | `id` (Long) | — | 预约ID |
+| 预警评估详情 | `assessmentId` (Long) | — | 风险评估ID |
+| 预警规则启用/停用 | `status` (Integer) | `id` (Long) | 0=停用 1=启用，id=规则ID |
+| 预警规则删除 | — | `ids` (String) | 多个用逗号分隔 |
+
 ### 用户端接口
 
 | 模块 | 接口 | 方法 | 路径 |

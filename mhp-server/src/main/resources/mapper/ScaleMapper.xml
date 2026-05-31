@@ -55,4 +55,26 @@
     </update>
 
 
+    <!-- 根据量表ID查询心理量表详情 --> 
+
+    <select id="selectById" resultType="com.mhp.vo.ScaleVO">
+        select *
+         from psy_scale 
+         where scale_id = #{scaleId}
+    </select>
+
+    <!-- 根据量表ID查询题目表 --> 
+    <select id="selectByScaleQuestion" resultType="com.mhp.vo.PsyQuestionVO">
+        select * from psy_question where scale_id = #{scaleId}
+    </select>
+
+    <!-- selectByScaleOption --> 
+
+   <select id="selectByScaleOption" resultType="com.mhp.entity.PsyOption">
+    select * from psy_option where question_id in
+        <foreach collection="questionIds" item="id" open="(" separator="," close=")">
+        #{id}
+        </foreach>
+</select>
+
 </mapper>

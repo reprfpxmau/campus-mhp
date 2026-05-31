@@ -8,11 +8,15 @@ import com.mhp.dto.ScalePageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.mapper.ScaleMapper;
 import com.mhp.entity.PsyScale;
+import com.mhp.vo.ScaleVO;
+import com.mhp.vo.PsyQuestionVO;
+import com.mhp.entity.PsyOption;
 import com.mhp.exception.BusinessException;
 import com.mhp.service.ScaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 import com.mhp.constant.MessageConstant;
 
 @Service
@@ -78,5 +82,49 @@ public class ScaleServiceImpl implements ScaleService {
                 .status(status)
                 .build();
         scaleMapper.update(psyScale);
+    }
+
+    /**
+     * 根据量表ID查询心理量表详情
+     * @param scaleId 量表ID
+     * @return 心理量表详情
+     */
+    @Override
+    public ScaleVO selectById(Long scaleId) {
+        //  查询量表详情
+        ScaleVO scaleVO = scaleMapper.selectById(scaleId);
+
+        //  根据量表ID查询题目列表
+        List <PsyQuestionVO> questions = scaleMapper.selectByScaleQuestion(scaleId);
+
+        // 获取题目号列表
+            // 用来存储题目号列表
+        List<Long> questionIds = new ArrayList<>();
+            // 遍历题目列表，获取题目主键
+        if (questions != null && !questions.isEmpty()) {
+        for (PsyQuestionVO question : questions) {
+                // 将题目主键添加到列表
+            questionIds.add(question.getQuestionId());
+            }
+        }
+        
+        // 根据题目id查询选项列表
+        if (questionIds != null && !questionIds.isEmpty()) {
+            // 根据题目id列表查询选项列表
+            List <PsyOption> options = scaleMapper.selectByScaleOption(questionIds);
+            //将选项列表添加到题目列表
+            questions.forEach(question -> {
+                // 选项列表
+                List<PsyOption> optionList = new ArrayList<>();
+                for (PsyOption option : options) {
+                    if (question.getQuestionId().equals(option.getQuestionId())) {
+                    optionList.add(option);
+                    }
+                }
+                question.setOptionList(optionList);
+            });
+        }
+        scaleVO.setQuestions(questions);
+        return scaleVO;
     }
 }

@@ -3,8 +3,12 @@ package com.mhp.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
 import com.mhp.entity.PsyScale;
+import com.mhp.vo.ScaleVO;
+import com.mhp.entity.PsyOption;
 import com.mhp.dto.ScalePageQueryDTO;
 import org.apache.ibatis.annotations.Select;
+import com.mhp.vo.PsyQuestionVO;
+import java.util.List;
 
 @Mapper
 public interface ScaleMapper {
@@ -41,4 +45,29 @@ public interface ScaleMapper {
      */
     @Select("select status from psy_scale where scale_id = #{scaleId}")
     Integer selectStatusById(Long scaleId);
+
+
+    /**
+     * 根据量表ID查询
+     * @param scaleId 量表ID
+     * @return 量表
+     */
+    ScaleVO selectById(Long scaleId);
+    
+    /**
+     * 根据量表ID查询题目表
+     * @param scaleId 量表ID
+     * @return 题目列表
+     */
+    List<PsyQuestionVO> selectByScaleQuestion(Long scaleId);
+    
+    /**
+     * 根据题目ID查询选项表
+     * @param questionIds 题目ID列表
+     * @return 选项列表
+     */
+    List<PsyOption> selectByScaleOption(List<Long> questionIds);
+
+
+
 }

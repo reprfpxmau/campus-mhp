@@ -1,15 +1,13 @@
-package com.mhp.entity;
+package com.mhp.vo;
 
-import lombok.Data;
 import java.util.List;
 
-/**
- * 题目实体类
- * INDEX: idx_archive_id
- */
+import com.mhp.entity.PsyOption;
+import lombok.Data;
+
 @Data
-public class PsyQuestion {
-    // 主键
+public class PsyQuestionVO {
+     // 主键
     private Long questionId;
     // 量表ID
     private Long scaleId;
@@ -22,4 +20,6 @@ public class PsyQuestion {
     // 所属维度
     private String dimension;
 
+    // 扩展:选项列表
+    private List<PsyOption> optionList;
 }
