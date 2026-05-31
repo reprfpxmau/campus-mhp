@@ -254,10 +254,10 @@ npm run build
 | 预警 | 处理 | POST | /admin/warn/process |
 | 预警规则 | 分页查询 | GET | /admin/warn-rule/page |
 | 预警规则 | 新增/修改 | POST/PUT | /admin/warn-rule |
-| 统计 | 概览 | GET | /admin/stat/overview | 工作台卡片 |
-| 统计 | 档案分布 | GET | /admin/stat/archive-distribution | 数据统计页饼图 |
-| 统计 | 学院咨询 | GET | /admin/stat/college-consult | 数据统计页柱状图 |
-| 统计 | 月度趋势 | GET | /admin/stat/monthly-exam | 数据统计页折线图 |
+| 统计 | 概览 | GET | /admin/stat/overview |
+| 统计 | 档案分布 | GET | /admin/stat/archive-distribution |
+| 统计 | 学院咨询 | GET | /admin/stat/college-consult |
+| 统计 | 月度趋势 | GET | /admin/stat/monthly-exam |
 | 通用 | 文件上传 | POST | /admin/common/upload |
 
 ### 用户端接口
@@ -339,4 +339,4 @@ npm run build
 ---
 
 **版本**: v1.0.0
-**最后更新**: 2026-05-30
+**最后更新**: 2026-05-31

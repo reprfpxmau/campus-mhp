@@ -8,10 +8,13 @@ import com.mhp.dto.ScalePageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.mapper.ScaleMapper;
 import com.mhp.entity.PsyScale;
+import com.mhp.exception.BusinessException;
 import com.mhp.service.ScaleService;
+import io.swagger.v3.oas.models.security.SecurityScheme.In;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import java.time.LocalDateTime;
 import java.util.List;
+import com.mhp.constant.MessageConstant;
 
 @Service
 public class ScaleServiceImpl implements ScaleService {
@@ -33,5 +36,20 @@ public class ScaleServiceImpl implements ScaleService {
         return new PageResult(total,records);
     }
 
-    
+    /**
+     * 新增心理量表
+     * @param psyScale 心理量表
+     */
+    @Override
+    public void add(PsyScale psyScale) {
+        Integer scaleCount = scaleMapper.selectByScaleCode(psyScale.getScaleCode());
+        if (scaleCount > 0) {
+            throw new BusinessException(MessageConstant.SCALE_CODE_EXIST);
+        }
+                psyScale.setStatus(0);
+                psyScale.setIsBuiltIn(0);
+                psyScale.setCreateTime(LocalDateTime.now());
+                psyScale.setUpdateTime(LocalDateTime.now());
+        scaleMapper.insert(psyScale);
+    }
 }
