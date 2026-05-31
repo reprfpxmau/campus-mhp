@@ -2,6 +2,7 @@ package com.mhp.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.alibaba.druid.sql.visitor.functions.If;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mhp.dto.ScalePageQueryDTO;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 import com.mhp.constant.MessageConstant;
+import com.mhp.entity.PsyQuestionDTO;
 
 @Service
 public class ScaleServiceImpl implements ScaleService {
@@ -126,5 +128,26 @@ public class ScaleServiceImpl implements ScaleService {
         }
         scaleVO.setQuestions(questions);
         return scaleVO;
+    }
+
+    /**
+     * 新增题目
+     * @param scaleId 量表ID
+     * @return
+     */
+    @Override
+    public void addQuestion(PsyQuestionDTO psyQuestionDTO) {
+        // 验证量表状态是否为禁用
+        Integer status = scaleMapper.selectStatusById(psyQuestionDTO.getScaleId());
+        if (status == 1) {
+            throw new BusinessException(MessageConstant.SCALE_STATUS_ERROR);
+        }
+        // 验证题目号是否存在
+        Integer questionCount = scaleMapper.selectByQuestionNo(psyQuestionDTO.getScaleId(),psyQuestionDTO.getQuestionNo());
+        if (questionCount > 0) {
+            throw new BusinessException(MessageConstant.QUESTION_NO_EXIST);
+        }
+        // 新增题目
+        scaleMapper.insertQuestion(psyQuestionDTO);
     }
 }

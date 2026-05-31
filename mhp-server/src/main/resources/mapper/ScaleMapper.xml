@@ -77,4 +77,18 @@
         </foreach>
 </select>
 
+    <!-- insertQuestion --> 
+
+    <insert id="insertQuestion" parameterType="com.mhp.entity.PsyQuestionDTO">
+        insert into psy_question (scale_id, question_no, content, is_reverse, dimension)
+        values (#{scaleId}, #{questionNo}, #{content}, #{isReverse}, #{dimension})
+    </insert>
+
+    <!-- selectByQuestionNo --> 
+
+    <select id="selectByQuestionNo" resultType="java.lang.Integer">
+        select count(*)
+        from psy_question
+        where scale_id = #{scaleId} and question_no = #{questionNo}
+    </select>
 </mapper>

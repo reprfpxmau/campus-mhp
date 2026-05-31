@@ -5,6 +5,7 @@ import com.mhp.dto.ScalePageQueryDTO;
 import com.mhp.vo.ScaleVO;
 import com.mhp.result.PageResult;
 import com.mhp.entity.PsyScale;
+import com.mhp.entity.PsyQuestionDTO;
 
 @Service
 public interface ScaleService {
@@ -36,4 +37,9 @@ public interface ScaleService {
      * @return 量表
      */
     ScaleVO selectById(Long scaleId);
+    /**
+     * 新增题目
+     * @param psyQuestionDTO 题目DTO
+     */
+    void addQuestion(PsyQuestionDTO psyQuestionDTO);
 }

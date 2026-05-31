@@ -9,6 +9,7 @@ import com.mhp.dto.ScalePageQueryDTO;
 import org.apache.ibatis.annotations.Select;
 import com.mhp.vo.PsyQuestionVO;
 import java.util.List;
+import com.mhp.entity.PsyQuestionDTO;
 
 @Mapper
 public interface ScaleMapper {
@@ -68,6 +69,16 @@ public interface ScaleMapper {
      */
     List<PsyOption> selectByScaleOption(List<Long> questionIds);
 
-
+    /**
+     * 新增题目
+     * @param psyQuestionDTO 题目DTO
+     */
+    void insertQuestion(PsyQuestionDTO psyQuestionDTO);
+    /**
+     * 根据题目号查询
+     * @param questionNo 题目号
+     * @return 题目
+     */
+    Integer selectByQuestionNo(Long scaleId,String questionNo);
 
 }

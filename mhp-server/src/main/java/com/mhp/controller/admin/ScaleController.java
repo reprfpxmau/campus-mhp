@@ -17,6 +17,7 @@ import com.mhp.vo.ScaleVO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import com.mhp.entity.PsyQuestionDTO;
 
 @RestController
 @RequestMapping("/admin/scale")
@@ -84,5 +85,17 @@ public class ScaleController {
         log.info("获取量表详情：id={}", id);
         ScaleVO scaleVO = scaleService.selectById(id);
         return Result.success(scaleVO);
+    }
+
+    /**
+     * 新增题目
+     * @param scaleId 量表ID
+     * @return
+     */
+    @PostMapping("/question")
+    public Result addQuestion(@RequestBody PsyQuestionDTO psyQuestionDTO) {
+        log.info("新增题目：{}", psyQuestionDTO);
+        scaleService.addQuestion(psyQuestionDTO);
+        return Result.success();
     }
 }

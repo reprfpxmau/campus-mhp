@@ -11,5 +11,6 @@ public class MessageConstant {
     public static final String ENABLED_USER_CANNOT_BE_DELETED = "所选用户中包含启用用户";
 
     public static final String SCALE_CODE_EXIST = "量表编码已存在";
-    public static final String SCALE_STATUS_ERROR = "已启用的量表不能修改";
+    public static final String SCALE_STATUS_ERROR = "启用的量表不能修改";
+    public static final String QUESTION_NO_EXIST = "题目号已存在";
 }
