@@ -76,7 +76,7 @@ public class UserController {
      */
     @PostMapping("status/{status}")
     @Operation(summary = "启用/禁用用户")
-    public Result updateStatus(@PathVariable Integer status, @RequestParam Long id) {
+    public Result updateStatus(@PathVariable Integer status,Long id) {
         log.info("启用/禁用用户请求：{}，用户ID：{}", status, id);
         userService.updateStatus(status, id);
         return Result.success();

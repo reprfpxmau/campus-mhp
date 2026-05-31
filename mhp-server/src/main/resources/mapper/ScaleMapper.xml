@@ -15,20 +15,44 @@
         order by create_time desc
     </select>
 
-    <!-- insert --> 
-
+    <!-- 新增心理量表 --> 
     <insert id="insert" parameterType="com.mhp.entity.PsyScale">
         insert into psy_scale 
         (scale_name, scale_code, description, estimated_time,target_group,status,is_builtin,create_time,update_time)
         values (#{scaleName}, #{scaleCode}, #{description}, #{estimatedTime}, #{targetGroup}, #{status}, #{isBuiltIn}, #{createTime}, #{updateTime})  
     </insert>
 
-    <!-- selectByScaleCode --> 
-
+    <!-- 校验心理量表是否存在该编码 --> 
     <select id="selectByScaleCode" resultType="java.lang.Integer">
         select count(*) 
         from psy_scale 
         where scale_code = #{scaleCode}
     </select>
+
+    <!-- 更新心理量表 --> 
+    <update id="update" parameterType="com.mhp.entity.PsyScale">
+        update psy_scale 
+        <set> <if test="scaleName != null and scaleName != ''">
+                scale_name = #{scaleName}, 
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description}, 
+            </if>
+            <if test="estimatedTime != null">
+                estimated_time = #{estimatedTime}, 
+            </if>
+            <if test="targetGroup != null and targetGroup != ''">
+                target_group = #{targetGroup}, 
+            </if>
+            <if test="status != null">
+                status = #{status}, 
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where scale_id = #{scaleId}
+    </update>
+
 
 </mapper>

@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import com.mhp.result.Result;
 import com.mhp.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.mhp.dto.ScalePageQueryDTO;
 import com.mhp.entity.PsyScale;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/admin/scale")
@@ -43,6 +45,31 @@ public class ScaleController {
     public Result add(@RequestBody PsyScale psyScale) {
         log.info("新增心理量表：{}", psyScale);
         scaleService.add(psyScale);
+        return Result.success();
+    }
+
+    /**
+     * 更新心理量表
+     * @param psyScale
+     * @return
+     */
+    @PutMapping
+    public Result update(@RequestBody PsyScale psyScale) {
+        log.info("更新心理量表：{}", psyScale);
+        scaleService.update(psyScale);
+        return Result.success();
+    }
+
+    /**
+     * 启用/禁用心理量表
+     * @param status 状态：0=禁用 1=正常
+     * @param scaleId 量表ID
+     * @return 量表
+     */
+    @PostMapping("/status/{status}")
+    public Result status(@PathVariable Integer status,Long id) {
+        log.info("启用/禁用心理量表：status={}, id={}", status, id);
+        scaleService.updateStatus(status, id);
         return Result.success();
     }
 }

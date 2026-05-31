@@ -10,7 +10,6 @@ import com.mhp.mapper.ScaleMapper;
 import com.mhp.entity.PsyScale;
 import com.mhp.exception.BusinessException;
 import com.mhp.service.ScaleService;
-import io.swagger.v3.oas.models.security.SecurityScheme.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -51,5 +50,33 @@ public class ScaleServiceImpl implements ScaleService {
                 psyScale.setCreateTime(LocalDateTime.now());
                 psyScale.setUpdateTime(LocalDateTime.now());
         scaleMapper.insert(psyScale);
+    }
+
+    /**
+     * 更新心理量表
+     * @param psyScale 心理量表
+     */
+    @Override
+    public void update(PsyScale psyScale) {
+        Integer status = scaleMapper.selectStatusById(psyScale.getScaleId());
+        if (status == 1) {
+            throw new BusinessException(MessageConstant.SCALE_STATUS_ERROR);
+        }
+        psyScale.setUpdateTime(LocalDateTime.now());
+        scaleMapper.update(psyScale);
+    }
+
+    /**
+     * 更新心理量表状态
+     * @param status 状态：0=禁用 1=正常
+     * @param scaleId 量表ID
+     */
+    @Override
+    public void updateStatus(Integer status, Long scaleId) {
+        PsyScale psyScale = PsyScale.builder()
+                .scaleId(scaleId)
+                .status(status)
+                .build();
+        scaleMapper.update(psyScale);
     }
 }

@@ -21,10 +21,24 @@ public interface ScaleMapper {
      */
     void insert(PsyScale psyScale);
 
+
     /**
      * 根据量表编码查询
      * @param scaleCode 量表编码
      * @return 量表
      */
     Integer selectByScaleCode(String scaleCode);
+
+    /**
+     * 更新心理量表
+     * @param psyScale 心理量表
+     */
+    void update(PsyScale psyScale);
+    /**
+     * 获取量表状态
+     * @param scaleId 量表ID
+     * @return 量表状态
+     */
+    @Select("select status from psy_scale where scale_id = #{scaleId}")
+    Integer selectStatusById(Long scaleId);
 }

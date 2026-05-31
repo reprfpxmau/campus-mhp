@@ -18,5 +18,15 @@ public interface ScaleService {
      * @param psyScale 心理量表
      */
     void add(PsyScale psyScale);
-
+    /**
+     * 更新心理量表
+     * @param psyScale 心理量表
+     */
+    void update(PsyScale psyScale);
+    /**
+     * 更新心理量表状态
+     * @param status 状态：0=禁用 1=正常
+     * @param scaleId 量表ID
+     */
+    void updateStatus(Integer status, Long scaleId);
 }
