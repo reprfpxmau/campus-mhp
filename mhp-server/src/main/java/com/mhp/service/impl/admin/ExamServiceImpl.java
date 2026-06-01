@@ -7,7 +7,7 @@ import com.mhp.mapper.admin.ExamMapper;
 import com.mhp.result.PageResult;
 import com.mhp.service.admin.ExamService;
 import com.mhp.vo.admin.ExamPageQueryVO;
-import com.mhp.vo.admin.ExanReportVO;
+import com.mhp.vo.admin.ExamReportVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,7 +43,7 @@ public class ExamServiceImpl implements ExamService {
      * @return 测评报告
      */
     @Override
-    public ExanReportVO getReport(Long recordId) {
+    public ExamReportVO getReport(Long recordId) {
         return examMapper.selectReport(recordId);
     }
 }

@@ -8,7 +8,7 @@ import com.mhp.dto.admin.ExamPageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
 import com.mhp.service.admin.ExamService;
-import com.mhp.vo.admin.ExanReportVO;
+import com.mhp.vo.admin.ExamReportVO;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -48,8 +48,8 @@ public class ExamController {
      * @return
      */
     @GetMapping("report/{recordId}")
-    public Result<ExanReportVO> report(@PathVariable Long recordId) {
-        ExanReportVO examReportVO = examService.getReport(recordId);
+    public Result<ExamReportVO> report(@PathVariable Long recordId) {
+        ExamReportVO examReportVO = examService.getReport(recordId);
         return Result.success(examReportVO);
     }
 }

@@ -25,7 +25,7 @@
 
     <!-- selectReport --> 
 
-    <select id="selectReport" resultType="com.mhp.vo.admin.ExanReportVO">
+    <select id="selectReport" resultType="com.mhp.vo.admin.ExamReportVO">
         select *
         ,su.real_name as studentName
         ,ps.scale_name as scaleName

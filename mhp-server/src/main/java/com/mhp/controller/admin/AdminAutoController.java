@@ -32,7 +32,7 @@ public class AdminAutoController {
     @PostMapping("/login")
     @Operation(summary = "管理员登录")
     public Result login(@RequestBody AdminLoginDTO adminLoginDTO) {
-        log.info("管理员登录请求：{}", adminLoginDTO);
+        log.info("管理员登录请求：{} ", adminLoginDTO);
         return adminAuthService.login(adminLoginDTO);
     }
 

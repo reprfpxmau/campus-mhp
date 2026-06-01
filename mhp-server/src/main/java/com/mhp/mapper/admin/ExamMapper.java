@@ -2,7 +2,7 @@ package com.mhp.mapper.admin;
 
 import com.mhp.dto.admin.ExamPageQueryDTO;
 import com.mhp.vo.admin.ExamPageQueryVO;
-import com.mhp.vo.admin.ExanReportVO;
+import com.mhp.vo.admin.ExamReportVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,5 +20,5 @@ public interface ExamMapper {
      * @param recordId 测评报告ID
      * @return 测评报告
      */
-    ExanReportVO selectReport(Long recordId);
+    ExamReportVO selectReport(Long recordId);
 }

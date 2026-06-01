@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.mhp.mapper.admin.LoginLogMapper">
-    <select id="pageQuery" resultType="com.mhp.entity.admin.SysLoginLog">
+    <select id="pageQuery" resultType="com.mhp.entity.SysLoginLog">
         select * from sys_login_log
         <where>
             <if test="loginStatus != null">

@@ -26,14 +26,14 @@
 
     <!-- insert --> 
 
-    <insert id="insert" parameterType="com.mhp.entity.admin.SysUser">
+    <insert id="insert" parameterType="com.mhp.entity.SysUser">
         insert into sys_user (real_name, student_no, password, role_id,phone,status, create_time)
         values (#{realName}, #{studentNo}, #{password}, #{roleId},#{phone},#{status},#{createTime})
     </insert>    
 
     <!-- update --> 
 
-    <update id="update" parameterType="com.mhp.entity.admin.SysUser">
+    <update id="update" parameterType="com.mhp.entity.SysUser">
         update sys_user
         <set>
             <if test="realName != null and realName != ''">

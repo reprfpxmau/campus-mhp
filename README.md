@@ -69,9 +69,10 @@ campus-mhp/
 │   ├── 项目脚手架说明.md
 │   ├── 开发流程.md
 │   ├── 测试用例.md
-│   └── TODO.md                  # 待实现功能清单
+│   └── TODO.md
 ├── sql/                            # 数据库脚本
-│   └── mhp_init.sql               # 初始化脚本（32张表 + 预置数据）
+│   ├── mhp_init.sql               # 初始化脚本（32张表 + 预置数据）
+│   └── full_test_data.sql          # 全链路测试数据
 ├── api-doc/                        # 接口文档
 │   ├── 管理端接口文档.html
 │   └── 用户端接口文档.html
@@ -83,9 +84,9 @@ campus-mhp/
 │   │   ├── router/index.js        # 路由配置
 │   │   └── utils/request.js       # Axios 封装
 │   └── dist/                      # 编译产物
-├── nginx-1.20.2/                   # Nginx（生产部署可选）
+├── nginx-1.20.2/                   # Nginx
 └── campus-mhp/                     # Maven 后端工程
-    ├── pom.xml                     # 父工程配置
+    ├── pom.xml
     ├── mhp-common/                 # 公共模块
     │   └── com/mhp/
     │       ├── result/            # Result、PageResult 统一返回
@@ -95,14 +96,21 @@ campus-mhp/
     │       └── utils/             # JwtUtil
     ├── mhp-pojo/                   # 数据模型模块
     │   └── com/mhp/
-    │       ├── entity/            # 数据库实体类
-    │       ├── dto/               # 请求参数 DTO
-    │       └── vo/                # 视图对象 VO
+    │       ├── entity/            # 数据库实体类（全局共享）
+    │       ├── dto/admin/         # 管理端请求参数 DTO
+    │       ├── dto/user/          # 用户端请求参数 DTO
+    │       ├── vo/admin/          # 管理端视图对象 VO
+    │       └── vo/user/           # 用户端视图对象 VO
     └── mhp-server/                 # 业务逻辑模块
         └── com/mhp/
             ├── controller/admin/  # 管理端控制器
-            ├── service/           # 业务逻辑层
-            ├── mapper/            # 数据访问层
+            ├── controller/user/   # 用户端控制器
+            ├── service/admin/     # 管理端业务接口
+            ├── service/user/      # 用户端业务接口
+            ├── service/impl/admin/# 管理端业务实现
+            ├── service/impl/user/ # 用户端业务实现
+            ├── mapper/admin/      # 管理端数据访问
+            ├── mapper/user/       # 用户端数据访问
             ├── interceptor/       # JWT 拦截器
             ├── config/            # WebMvc 配置
             └── handler/           # 全局异常处理
@@ -366,4 +374,4 @@ npm run build
 ---
 
 **版本**: v1.0.0
-**最后更新**: 2026-05-31
+**最后更新**: 2026-06-01

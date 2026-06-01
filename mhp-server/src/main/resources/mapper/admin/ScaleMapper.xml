@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mhp.mapper.ScaleMapper">
-    <select id="pageQuery" resultType="com.mhp.entity.admin.PsyScale">
+<mapper namespace="com.mhp.mapper.admin.ScaleMapper">   
+    <select id="pageQuery" resultType="com.mhp.entity.PsyScale">
         select * from psy_scale
         <where>
             <if test="scaleName != null and scaleName != ''">
@@ -16,7 +16,7 @@
     </select>
 
     <!-- 新增心理量表 --> 
-    <insert id="insert" parameterType="com.mhp.entity.admin.PsyScale">
+    <insert id="insert" parameterType="com.mhp.entity.PsyScale">
         insert into psy_scale 
         (scale_name, scale_code, description, estimated_time,target_group,status,is_builtin,create_time,update_time)
         values (#{scaleName}, #{scaleCode}, #{description}, #{estimatedTime}, #{targetGroup}, #{status}, #{isBuiltIn}, #{createTime}, #{updateTime})  
@@ -30,7 +30,7 @@
     </select>
 
     <!-- 更新心理量表 --> 
-    <update id="update" parameterType="com.mhp.entity.admin.PsyScale">
+    <update id="update" parameterType="com.mhp.entity.PsyScale">
         update psy_scale 
         <set> <if test="scaleName != null and scaleName != ''">
                 scale_name = #{scaleName}, 
@@ -74,7 +74,7 @@
 
     <!-- 根据量表ID查询选项表 --> 
 
-   <select id="selectByScaleOption" resultType="com.mhp.entity.admin.PsyOption">
+   <select id="selectByScaleOption" resultType="com.mhp.entity.PsyOption">
     select * from psy_option where question_id in
         <foreach collection="questionIds" item="id" open="(" separator="," close=")">
         #{id}
@@ -82,7 +82,7 @@
 </select>
 
     <!-- 新增题目 -->
-    <insert id="insertQuestion" useGeneratedKeys="true" keyProperty="questionId" parameterType="com.mhp.entity.admin.PsyQuestionDTO">
+    <insert id="insertQuestion" useGeneratedKeys="true" keyProperty="questionId" parameterType="com.mhp.entity.PsyQuestionDTO">
         insert into psy_question (scale_id, question_no, content, is_reverse, dimension)
         values (#{scaleId}, #{questionNo}, #{content}, #{isReverse}, #{dimension})
     </insert>

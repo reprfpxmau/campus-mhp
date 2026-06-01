@@ -3,7 +3,7 @@ package com.mhp.vo.admin;
 import lombok.Data;
 
 @Data
-public class ExanReportVO {
+public class ExamReportVO {
     private Long studentId;
     private Long scaleId;
     

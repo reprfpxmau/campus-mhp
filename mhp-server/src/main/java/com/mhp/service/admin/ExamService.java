@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.mhp.dto.admin.ExamPageQueryDTO;
 import com.mhp.result.PageResult;
-import com.mhp.vo.admin.ExanReportVO;
+import com.mhp.vo.admin.ExamReportVO;
 
 @Service
 public interface ExamService {
@@ -19,5 +19,5 @@ public interface ExamService {
      * @param recordId 测评报告ID
      * @return 测评报告
      */
-    ExanReportVO getReport(Long recordId);
+    ExamReportVO getReport(Long recordId);
 }
