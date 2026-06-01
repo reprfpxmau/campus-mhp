@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhp.mapper.admin.AppointmentMapper">
+
+<select id="pageQuery" resultType="com.mhp.vo.admin.AppointmentPageQueryVO">
+    select ca.*,
+        su.real_name as studentName,
+        sr.real_name as counselorName
+    from cs_appointment as ca
+    left join sys_user as su on ca.student_id = su.user_id
+    left join sys_user as sr on ca.counselor_id = sr.user_id
+    <where>
+        <if test="studentName != null and studentName != ''">
+            and su.real_name like concat('%',#{studentName},'%')    
+        </if>
+        <if test="status != null">
+            and ca.status = #{status}
+        </if>
+        <if test="appointmentDate != null and appointmentDate != ''">
+            and ca.appointment_date = #{appointmentDate}
+        </if>
+        <if test="counselorId != null">
+            and ca.counselor_id = #{counselorId}
+        </if>
+    </where>
+    order by create_time desc
+</select>
+
+</mapper>

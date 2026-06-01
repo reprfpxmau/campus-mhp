@@ -8,9 +8,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.mhp.dto.admin.AdminLoginDTO;
 import com.mhp.result.Result;
-import com.mhp.dto.AdminLoginDTO;
-import com.mhp.service.AdminAuthService;
+import com.mhp.service.admin.AdminAuthService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import lombok.extern.slf4j.Slf4j;
 

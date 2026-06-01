@@ -9,16 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import com.mhp.result.Result;
+import com.mhp.service.admin.ScaleService;
+import com.mhp.vo.admin.ScaleVO;
 import com.mhp.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mhp.service.ScaleService;
-import com.mhp.dto.ScalePageQueryDTO;
+
 import com.mhp.entity.PsyScale;
-import com.mhp.vo.ScaleVO;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mhp.dto.admin.ScalePageQueryDTO;
 import com.mhp.entity.PsyQuestionDTO;
 import java.util.List;
 

@@ -4,10 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.mhp.result.Result;
+import com.mhp.service.admin.CollegeService;
 import com.mhp.entity.SysCollege;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import com.mhp.service.CollegeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 

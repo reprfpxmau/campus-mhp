@@ -4,10 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.mhp.dto.ExamPageQueryDTO;
-import com.mhp.vo.ExanReportVO;
+import com.mhp.dto.admin.ExamPageQueryDTO;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
+import com.mhp.service.admin.ExamService;
+import com.mhp.vo.admin.ExanReportVO;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mhp.service.ExamService;
 
 
 

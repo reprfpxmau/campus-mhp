@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mhp.dto.UserPageQueryDTO;
+
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
+import com.mhp.service.admin.UserService;
+import com.mhp.vo.admin.UserVO;
+
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springdoc.core.annotations.ParameterObject;
-import com.mhp.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.mhp.dto.admin.UserPageQueryDTO;
 import com.mhp.entity.SysUser;
-import com.mhp.vo.UserVO;
+
 import java.util.List;
 
 

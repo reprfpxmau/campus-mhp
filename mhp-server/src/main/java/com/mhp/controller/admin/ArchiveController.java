@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import com.mhp.dto.ArchivePageQueryDTO;
-import com.mhp.vo.MhArchiveVO;
 import com.mhp.result.PageResult;
-import com.mhp.service.ArchiveService;
 import com.mhp.result.Result;
+import com.mhp.service.admin.ArchiveService;
+import com.mhp.vo.admin.MhArchiveVO;
 
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mhp.dto.admin.ArchivePageQueryDTO;
 import com.mhp.entity.MhArchive;
 import org.springframework.web.bind.annotation.RequestBody;
 

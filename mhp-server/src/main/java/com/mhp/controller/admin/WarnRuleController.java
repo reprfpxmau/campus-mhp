@@ -7,12 +7,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
+import com.mhp.service.admin.WarnRuleService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springdoc.core.annotations.ParameterObject;
-import com.mhp.dto.RequestPageDTO;
-import com.mhp.service.WarnRuleService;
-import com.mhp.dto.WarnRuleDTO;
+
+import com.mhp.dto.admin.RequestPageDTO;
+import com.mhp.dto.admin.WarnRuleDTO;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

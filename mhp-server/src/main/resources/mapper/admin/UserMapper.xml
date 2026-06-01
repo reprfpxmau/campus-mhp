@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhp.mapper.admin.UserMapper">
+
+<!-- 分页查询用户 --> 
+    <select id="pageQuery" resultType="com.mhp.vo.admin.UserPageQueryVO">
+        select 
+            su.*,
+            sr.role_name
+         from sys_user as su
+        left join sys_role as sr on su.role_id = sr.role_id
+        <where>
+         <if test="realName != null and realName != ''">
+                and real_name like concat('%',#{realName},'%')
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                and student_no like concat('%',#{studentNo},'%')
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <!-- insert --> 
+
+    <insert id="insert" parameterType="com.mhp.entity.admin.SysUser">
+        insert into sys_user (real_name, student_no, password, role_id,phone,status, create_time)
+        values (#{realName}, #{studentNo}, #{password}, #{roleId},#{phone},#{status},#{createTime})
+    </insert>    
+
+    <!-- update --> 
+
+    <update id="update" parameterType="com.mhp.entity.admin.SysUser">
+        update sys_user
+        <set>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                student_no = #{studentNo},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="roleId != null">
+                role_id = #{roleId},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+    
+    
+
+    <!-- selectByUserId --> 
+
+    <select id="selectByUserId" resultType="com.mhp.vo.admin.UserVO">
+        select 
+            su.*,
+            sr.role_name
+         from sys_user as su
+        left join sys_role as sr on su.role_id = sr.role_id
+        where user_id = #{userId}
+    </select>    
+
+    <!-- 查询是否存在启用用户 --> 
+    <select id="countByIds" resultType="java.lang.Long">
+        select count(*) 
+        from sys_user 
+        where user_id in 
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        and status = 1
+    </select>    
+
+
+    <!-- 批量删除用户 --> 
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from sys_user where user_id in 
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>    
+</mapper>

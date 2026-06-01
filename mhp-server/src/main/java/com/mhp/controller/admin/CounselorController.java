@@ -7,10 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mhp.service.CounselorService;
-import com.mhp.vo.CounselorPageQueryVO;
+
 import java.util.List;
 import com.mhp.result.Result;
+import com.mhp.service.admin.CounselorService;
+import com.mhp.vo.admin.CounselorPageQueryVO;
 
 @RestController
 @RequestMapping("/admin/counselor")

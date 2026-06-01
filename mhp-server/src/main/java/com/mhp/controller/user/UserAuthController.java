@@ -2,8 +2,15 @@ package com.mhp.controller.user;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.mhp.dto.user.UserLoginDTO;
+import com.mhp.result.Result;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.mhp.service.user.UserAuthService;
 
 /**
  * 用户端认证控制器
@@ -20,5 +27,13 @@ import lombok.extern.slf4j.Slf4j;
 @Tag(name = "用户端-认证接口")
 @Slf4j
 public class UserAuthController {
+    @Autowired
+    private UserAuthService userAuthService;
     // TODO: 实现登录、注册、退出、修改密码
+    @PostMapping("/login")
+    public Result login(@RequestBody UserLoginDTO loginDTO) {
+        log.info("登录请求参数: {}", loginDTO);
+        userAuthService.login(loginDTO);
+        return Result.success();
+    }
 }

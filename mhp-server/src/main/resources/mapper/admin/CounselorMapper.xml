@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhp.mapper.admin.CounselorMapper">
+<select id="list" resultType="com.mhp.vo.admin.CounselorPageQueryVO">
+    select su.user_id, su.real_name
+    from sys_user as su
+    where su.role_id = 2
+</select>
+</mapper>

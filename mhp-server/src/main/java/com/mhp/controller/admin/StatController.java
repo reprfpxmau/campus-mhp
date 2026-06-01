@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import com.mhp.vo.StatVO;
-import com.mhp.service.StatService;
+
 import com.mhp.result.Result;
+import com.mhp.service.admin.StatService;
+import com.mhp.vo.admin.StatVO;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController

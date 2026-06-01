@@ -9,19 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mhp.dto.WarnPageQueryDTO;
+import com.mhp.dto.admin.CrWarnProcessDTO;
+import com.mhp.dto.admin.DistributeDTO;
+import com.mhp.dto.admin.WarnPageQueryDTO;
 import com.mhp.result.Result;
-import com.mhp.service.WarnService;
+import com.mhp.service.admin.WarnService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springdoc.core.annotations.ParameterObject;
 import com.mhp.result.PageResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.mhp.dto.CrWarnProcessDTO;
+
 import com.mhp.entity.CrRiskAssessment;
 import com.mhp.entity.CrWarnProcess;
 import java.util.List;
-import com.mhp.dto.DistributeDTO;
 
 
 

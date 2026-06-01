@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mhp.mapper.admin.WarnMapper">
+    <select id="pageQuery" resultType="com.mhp.vo.admin.WarnPageQueryVO">
+        select
+            cwe.*,
+            su.student_no as studentNo,
+            su.real_name as studentName
+        from cr_warn_event as cwe
+        left join sys_user as su on cwe.student_id = su.user_id
+        <where>
+            <if test="studentName != null and studentName != ''">
+                and su.real_name like concat('%',#{studentName},'%')
+            </if>
+            <if test="eventLevel != null">
+                and cwe.event_level = #{eventLevel}
+            </if>
+            <if test="eventStatus != null">
+                and cwe.event_status = #{eventStatus}
+            </if>
+            <if test="handlerId != null">
+                and cwe.handler_id = #{handlerId}
+            </if>
+        </where>
+        order by cwe.create_time desc
+    </select>
+
+
+    <!-- insert -->
+    <insert id="insert">
+        insert into cr_warn_process (event_id,handler_id, process_type, process_content, process_result, follow_up_plan,process_time,status)
+        values (#{eventId}, #{handlerId}, #{processType}, #{processContent}, #{processResult}, #{followUpPlan},#{processTime},#{status})
+    </insert>
+
+
+    <!-- 处理预警 --> 
+    <update id="processUpdate">
+        update cr_warn_event
+        set event_status = #{eventStatus}
+        where event_id = #{eventId}
+    </update>
+
+    <!-- 分发预警 --> 
+    <update id="distributeUpdate">
+        update cr_warn_event
+        set event_status = #{eventStatus}, handler_id = #{handlerId}
+        where event_id = #{eventId}
+    </update>
+
+    <!-- selectProcessByEventId --> 
+
+    <select id="selectProcessByEventId" resultType="com.mhp.entity.admin.CrWarnProcess">
+         select * from cr_warn_process where event_id = #{eventId} order by process_time desc
+    </select>   
+
+    <!-- closeOpenProcesses --> 
+
+    <update id="closeOpenProcesses">
+        update cr_warn_process
+        set status = 1
+        where event_id = #{eventId} and status = 0
+    </update>
+
+ 
+
+</mapper>
