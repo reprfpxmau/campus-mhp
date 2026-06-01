@@ -14,9 +14,14 @@ import java.util.List;
 
 import com.mhp.context.BaseContext;
 import com.mhp.dto.CrWarnProcessDTO;
+import com.mhp.dto.DistributeDTO;
 import org.springframework.beans.BeanUtils;
 import java.time.LocalDateTime;
+import com.mhp.entity.CrWarnEvent;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class WarnServiceImpl implements WarnService {
     @Autowired
@@ -62,6 +67,7 @@ public class WarnServiceImpl implements WarnService {
      * @return
      */
     @Override
+    @Transactional
     public void process(CrWarnProcessDTO crWarnProcessDTO) {
         CrWarnProcess crWarnProcess = new CrWarnProcess();
         BeanUtils.copyProperties(crWarnProcessDTO, crWarnProcess);
@@ -72,9 +78,53 @@ public class WarnServiceImpl implements WarnService {
         crWarnProcess.setHandlerId(userId);
         //设置当前处理时间为当前时间
         crWarnProcess.setProcessTime(LocalDateTime.now());
-        //设置处理状态为已处理
-        crWarnProcess.setStatus(1);
-        warnMapper.insert(crWarnProcess);
-        
+
+        //如果需要跟进，设置跟进计划 并将事件状态设置为处理中
+        CrWarnEvent crWarnEvent = new CrWarnEvent();
+        crWarnEvent.setEventId(crWarnProcess.getEventId());
+
+            //判定是否需要跟进
+        if(Boolean.TRUE.equals(crWarnProcessDTO.getNeedFollowUp())) {
+            // 将旧的跟踪记录设置为已完成
+            warnMapper.closeOpenProcesses(crWarnProcess.getEventId());
+            // 设置当前处理状态为处理中 0处理中 1已完成
+            crWarnProcess.setStatus(0);
+            // 设置事件状态为处理中 2处理中 3已处理
+            crWarnEvent.setEventStatus(2);
+        }else{        
+            //设置处理状态为已处理
+            warnMapper.closeOpenProcesses(crWarnProcess.getEventId());
+            crWarnProcess.setStatus(1);
+            crWarnEvent.setEventStatus(3);
+        }
+            crWarnProcess.setFollowUpPlan(crWarnProcessDTO.getFollowUpPlan());
+            warnMapper.insert(crWarnProcess);
+            warnMapper.processUpdate(crWarnEvent);
+    }
+
+    /**
+     * 根据事件ID查询预警处理记录
+     * @param eventId
+     * @return
+     */
+    @Override
+    public List<CrWarnProcess> getProcessRecords(Long eventId) {
+        return warnMapper.selectProcessByEventId(eventId);
+    }
+
+    /**
+     * 分发预警
+     * @param eventId
+     * @param handlerId
+     * @return
+     */
+    @Override
+    @Transactional
+    public void distribute(DistributeDTO distributeDTO) {
+        CrWarnEvent crWarnEvent = new CrWarnEvent();
+        crWarnEvent.setEventId(distributeDTO.getEventId());
+        crWarnEvent.setHandlerId(distributeDTO.getHandlerId());
+        crWarnEvent.setEventStatus(1);  // 待处理
+        warnMapper.distributeUpdate(crWarnEvent);
     }
 }

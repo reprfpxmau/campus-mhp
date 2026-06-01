@@ -34,4 +34,35 @@
         values (#{eventId}, #{handlerId}, #{processType}, #{processContent}, #{processResult}, #{followUpPlan},#{processTime},#{status})
     </insert>
 
+
+    <!-- 处理预警 --> 
+    <update id="processUpdate">
+        update cr_warn_event
+        set event_status = #{eventStatus}
+        where event_id = #{eventId}
+    </update>
+
+    <!-- 分发预警 --> 
+    <update id="distributeUpdate">
+        update cr_warn_event
+        set event_status = #{eventStatus}, handler_id = #{handlerId}
+        where event_id = #{eventId}
+    </update>
+
+    <!-- selectProcessByEventId --> 
+
+    <select id="selectProcessByEventId" resultType="com.mhp.entity.CrWarnProcess">
+         select * from cr_warn_process where event_id = #{eventId} order by process_time desc
+    </select>   
+
+    <!-- closeOpenProcesses --> 
+
+    <update id="closeOpenProcesses">
+        update cr_warn_process
+        set status = 1
+        where event_id = #{eventId} and status = 0
+    </update>
+
+ 
+
 </mapper>

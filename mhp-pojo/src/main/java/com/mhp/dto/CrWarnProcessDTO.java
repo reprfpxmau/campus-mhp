@@ -16,4 +16,7 @@ public class CrWarnProcessDTO {
     private String processResult;
     // 预警处理后续计划
     private String followUpPlan;
+
+    // 是否需要跟进
+    private Boolean needFollowUp;
 }

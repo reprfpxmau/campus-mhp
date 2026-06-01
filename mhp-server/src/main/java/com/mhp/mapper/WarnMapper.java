@@ -7,6 +7,8 @@ import com.mhp.dto.WarnPageQueryDTO;
 import com.mhp.entity.CrRiskAssessment;
 import org.apache.ibatis.annotations.Select;
 import com.mhp.entity.CrWarnProcess;
+import com.mhp.entity.CrWarnEvent;
+import java.util.List;
 
 @Mapper
 public interface WarnMapper {
@@ -30,5 +32,34 @@ public interface WarnMapper {
      * @return
      */
     void insert(CrWarnProcess crWarnProcess);
+    
+    /**
+     * 更新预警事件状态
+     * @param crWarnEvent 预警事件对象
+     * @return
+     */
+    void processUpdate(CrWarnEvent crWarnEvent);
+
+    /**
+     * 分发预警事件
+     * @param crWarnEvent 预警事件对象
+     * @return
+     */
+    void distributeUpdate(CrWarnEvent crWarnEvent);
+
+    /**
+     * 根据事件ID查询预警处理记录
+     * @param eventId 预警事件ID
+     * @return 预警处理记录列表
+     */
+    List<CrWarnProcess> selectProcessByEventId(Long eventId);
+
+    /**
+     * 关闭所有未处理的预警处理记录
+     * @param eventId 预警事件ID
+     * @return
+     */
+    void closeOpenProcesses(Long eventId);
+
     
 }

@@ -134,7 +134,10 @@ campus-mhp/
                      ├─ 未触发 → risk_level=0，结束
                      └─ 触发 → 写入规则快照和证据数据
                                → 生成 cr_warn_event（预警事件）
-                               → 管理员处理 → cr_warn_process
+                               → 管理员分发给咨询师
+                               → 咨询师处理（录入干预记录）
+                                 ├─ 需要跟踪 → status=2 处理中
+                                 └─ 不需要跟踪 → status=3 已处理
 ```
 
 ---
@@ -251,7 +254,8 @@ npm run build
 | 预警 | 分页查询 | GET | /admin/warn/page |
 | 预警 | 评估详情 | GET | /admin/warn/detail/{assessmentId} |
 | 预警 | 分发预警 | POST | /admin/warn/distribute |
-| 预警 | 处理 | POST | /admin/warn/process |
+| 预警 | 处理 | POST | /admin/warn/process | 含 needFollowUp 字段决定处理中/已处理状态 |
+| 预警 | 处理记录 | GET | /admin/warn/process-records/{eventId} | 查询某预警事件的所有处理记录 |
 | 预警规则 | 分页查询 | GET | /admin/warn-rule/page |
 | 预警规则 | 新增/修改 | POST/PUT | /admin/warn-rule |
 | 统计 | 概览 | GET | /admin/stat/overview |

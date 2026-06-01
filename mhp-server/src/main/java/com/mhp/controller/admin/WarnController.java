@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mhp.dto.WarnPageQueryDTO;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.mhp.dto.CrWarnProcessDTO;
 import com.mhp.entity.CrRiskAssessment;
+import com.mhp.entity.CrWarnProcess;
+import java.util.List;
+import com.mhp.dto.DistributeDTO;
 
 
 
@@ -70,5 +74,29 @@ public class WarnController {
         warnService.process(crWarnProcessDTO);
         return Result.success();
     }
+
+    /**
+     * 根据事件ID查询预警处理记录
+     * @param eventId
+     * @return
+     */
+    @GetMapping("/process-records/{eventId}")
+    public Result<List<CrWarnProcess>> getProcessRecords(@PathVariable Long eventId) {
+        log.info("根据事件ID查询预警处理记录请求：{}", eventId);
+        List<CrWarnProcess> list = warnService.getProcessRecords(eventId);
+        return Result.success(list);
+    }
     
+    /**
+     * 分发预警
+     * @param eventId
+     * @param handlerId
+     * @return
+     */
+    @PostMapping("distribute")
+    public Result distribute(@RequestBody DistributeDTO distributeDTO) {
+        log.info("分发预警请求：{}", distributeDTO);
+        warnService.distribute(distributeDTO);
+        return Result.success();
+    }
 }
