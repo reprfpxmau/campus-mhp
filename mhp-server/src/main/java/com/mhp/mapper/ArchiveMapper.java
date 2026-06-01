@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
 import com.mhp.entity.MhArchive;
 import com.mhp.dto.ArchivePageQueryDTO;
+import com.mhp.vo.MhArchiveVO;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
@@ -28,8 +29,8 @@ public interface ArchiveMapper {
      * @param studentId 学生ID
      * @return 档案详情
      */
-    @Select("select * from mh_archive where student_id = #{studentId}")
-    MhArchive selectByStudentId(Long studentId);
+ 
+    MhArchiveVO selectByStudentId(Long studentId);
 
     /**
      * 更新档案

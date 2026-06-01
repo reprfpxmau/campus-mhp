@@ -2,6 +2,7 @@ package com.mhp.service;
 
 import org.springframework.stereotype.Service;
 import com.mhp.dto.ArchivePageQueryDTO;
+import com.mhp.vo.MhArchiveVO;
 import com.mhp.result.PageResult;
 import com.mhp.entity.MhArchive;
 
@@ -26,7 +27,7 @@ public interface ArchiveService {
      * @param studentId 学生ID
      * @return 档案详情
      */
-    MhArchive selectByStudentId(Long studentId);
+    MhArchiveVO selectByStudentId(Long studentId);
 
     /**
      * 更新档案

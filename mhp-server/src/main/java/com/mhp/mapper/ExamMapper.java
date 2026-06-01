@@ -1,6 +1,7 @@
 package com.mhp.mapper;
 
 import com.mhp.vo.ExamPageQueryVO;
+import com.mhp.vo.ExanReportVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import com.mhp.dto.ExamPageQueryDTO;
@@ -13,4 +14,11 @@ public interface ExamMapper {
      * @return 分页结果
      */
     Page<ExamPageQueryVO> pageQuery(ExamPageQueryDTO examPageQueryDTO);
+
+    /**
+     * 测评报告详情
+     * @param recordId 测评报告ID
+     * @return 测评报告
+     */
+    ExanReportVO selectReport(Long recordId);
 }

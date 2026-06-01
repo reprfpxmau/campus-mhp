@@ -1,7 +1,6 @@
 package com.mhp.entity;
 
 import lombok.Data;
-import java.util.List;
 
 /**
  * 题目实体类

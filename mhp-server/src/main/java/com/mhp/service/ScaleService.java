@@ -6,6 +6,7 @@ import com.mhp.vo.ScaleVO;
 import com.mhp.result.PageResult;
 import com.mhp.entity.PsyScale;
 import com.mhp.entity.PsyQuestionDTO;
+import java.util.List;
 
 @Service
 public interface ScaleService {
@@ -42,4 +43,14 @@ public interface ScaleService {
      * @param psyQuestionDTO 题目DTO
      */
     void addQuestion(PsyQuestionDTO psyQuestionDTO);
+    /**
+     * 删除题目
+     * @param id 题目ID
+     */
+    void deleteQuestion(Long id);
+    /**
+     * 批量删除量表
+     * @param scaleIds 量表ID列表
+     */
+    void batchDeleteScale(List<Long> scaleIds);
 }

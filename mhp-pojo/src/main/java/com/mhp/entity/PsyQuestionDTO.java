@@ -11,5 +11,8 @@ public class PsyQuestionDTO {
     private String isReverse;
     private String dimension;
 
+    // 题目ID
+    private Long questionId;
+    // 选项列表
     private List<PsyOption> options;
 }

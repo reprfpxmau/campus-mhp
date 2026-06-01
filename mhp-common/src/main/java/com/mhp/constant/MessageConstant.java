@@ -12,5 +12,6 @@ public class MessageConstant {
 
     public static final String SCALE_CODE_EXIST = "量表编码已存在";
     public static final String SCALE_STATUS_ERROR = "启用的量表不能修改";
+    public static final String SCALE_STATUS_ERROR_DELETE = "启用的量表不能删除";
     public static final String QUESTION_NO_EXIST = "题目号已存在";
 }

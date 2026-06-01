@@ -7,6 +7,7 @@ import com.mhp.result.PageResult;
 import com.mhp.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.dto.ExamPageQueryDTO;
+import com.mhp.vo.ExanReportVO;
 import com.github.pagehelper.PageHelper;
 import java.util.List;
 import com.github.pagehelper.Page;
@@ -31,5 +32,15 @@ public class ExamServiceImpl implements ExamService {
         Long total = page.getTotal();
         List<ExamPageQueryVO> records = page.getResult();
         return new PageResult(total, records);
+    }
+
+    /**
+     * 测评报告详情
+     * @param recordId 测评报告ID
+     * @return 测评报告
+     */
+    @Override
+    public ExanReportVO getReport(Long recordId) {
+        return examMapper.selectReport(recordId);
     }
 }

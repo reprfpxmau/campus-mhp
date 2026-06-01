@@ -2,6 +2,7 @@ package com.mhp.service;
 
 import org.springframework.stereotype.Service;
 import com.mhp.dto.ExamPageQueryDTO;
+import com.mhp.vo.ExanReportVO;
 import com.mhp.result.PageResult;
 
 @Service
@@ -12,4 +13,10 @@ public interface ExamService {
      * @return 分页结果
      */
     PageResult pageQuery(ExamPageQueryDTO examPageQueryDTO);
+    /**
+     * 测评报告详情
+     * @param recordId 测评报告ID
+     * @return 测评报告
+     */
+    ExanReportVO getReport(Long recordId);
 }

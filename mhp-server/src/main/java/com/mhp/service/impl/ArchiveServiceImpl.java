@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.mhp.dto.ArchivePageQueryDTO;
+import com.mhp.vo.MhArchiveVO;
 import com.mhp.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.mapper.ArchiveMapper;
@@ -46,7 +47,7 @@ public class ArchiveServiceImpl implements ArchiveService {
      * @return 档案详情
      */
     @Override
-    public MhArchive selectByStudentId(Long studentId) {
+    public MhArchiveVO selectByStudentId(Long studentId) {
         return archiveMapper.selectByStudentId(studentId);
     }
 

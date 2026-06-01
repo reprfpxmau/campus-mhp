@@ -50,4 +50,14 @@
         where archive_id = #{archiveId}
     </update>
 
+    <!-- 根据学号查询档案详情 --> 
+    <select id="selectByStudentId" resultType="com.mhp.vo.MhArchiveVO">
+        select ma.*
+        ,college_name as collegeName
+        ,class_name as className
+        from mh_archive as ma
+        left join sys_college as sco on ma.college_id = sco.college_id
+        left join sys_class as scl on ma.class_id = scl.class_id
+        where ma.student_id = #{studentId}
+    </select>
 </mapper>

@@ -75,10 +75,70 @@ public interface ScaleMapper {
      */
     void insertQuestion(PsyQuestionDTO psyQuestionDTO);
     /**
+     * 新增选项
+     * @param options 选项列表
+     */
+    void insertByOptions(List<PsyOption> options);
+    
+    /**
      * 根据题目号查询
      * @param questionNo 题目号
      * @return 题目
      */
     Integer selectByQuestionNo(Long scaleId,String questionNo);
 
+    /**
+     * 删除题目
+     * @param id 题目ID
+     */
+    void deleteQuestion(Long id);
+    /**
+     * 删除选项
+     * @param questionId 题目ID
+     */
+    void deleteByQuestionId(Long questionId);
+    /**
+     * 查询量表数据
+     * @param psyQuestionDTO 题目DTO
+     */
+    @Select("select * from psy_scale where scale_id = #{scaleId}")
+    PsyScale selectScaleById(Long scaleId);
+
+    /**
+     * 根据题目ID查询量表ID
+     * @param questionId 题目ID
+     * @return 量表ID
+     */
+    @Select("select scale_id from psy_question where question_id = #{questionId}")
+    Long selectScaleIdByQuestionId(Long questionId);
+
+    /**
+     * 根据量表ID列表查询量表状态
+     * @param scaleIds 量表ID列表
+     * @return 量表状态列表
+     */
+    List<Integer> selectStatusByIds(List<Long> scaleIds);
+
+    /**
+     * 批量删除量表
+     * @param scaleIds 量表ID列表
+     */
+    void batchDeleteScale(List<Long> scaleIds);
+    /**
+     * 批量删除题目
+     * @param scaleIds 量表ID列表
+     */
+    void batchByScaleQuestion(List<Long> scaleIds);
+    
+    /**
+     * 根据量表ID列表查询题目ID列表
+     * @param scaleIds 量表ID列表
+     * @return 题目ID列表
+     */
+    List<Long> selectByScaleQuestionIds(List<Long> scaleIds);
+    /**
+     * 批量删除选项
+     * @param questionIds 题目ID列表
+     */
+    void batchByScaleOption(List<Long> questionIds);
 }

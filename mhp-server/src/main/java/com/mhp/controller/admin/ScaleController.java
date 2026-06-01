@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import com.mhp.result.Result;
 import com.mhp.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import com.mhp.vo.ScaleVO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.mhp.entity.PsyQuestionDTO;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/scale")
@@ -96,6 +99,30 @@ public class ScaleController {
     public Result addQuestion(@RequestBody PsyQuestionDTO psyQuestionDTO) {
         log.info("新增题目：{}", psyQuestionDTO);
         scaleService.addQuestion(psyQuestionDTO);
+        return Result.success();
+    }
+
+    /**
+     * 删除题目
+     * @param id 题目ID
+     * @return 题目
+     */
+    @DeleteMapping("/question/{id}")
+    public Result deleteQuestion(@PathVariable Long id) {
+        log.info("删除题目：id={}", id);
+        scaleService.deleteQuestion(id);
+        return Result.success();
+    }
+
+    /**
+     * 批量删除量表
+     * @param scaleIds 量表ID列表
+     * @return
+     */
+    @DeleteMapping("/batch")
+    public Result batchDeleteScale(@RequestParam List<Long> ids) { 
+        log.info("批量删除量表：{}", ids);
+        scaleService.batchDeleteScale(ids);
         return Result.success();
     }
 }

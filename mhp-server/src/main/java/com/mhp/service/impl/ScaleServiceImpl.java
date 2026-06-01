@@ -1,8 +1,6 @@
 package com.mhp.service.impl;
 
 import org.springframework.stereotype.Service;
-
-import com.alibaba.druid.sql.visitor.functions.If;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.mhp.dto.ScalePageQueryDTO;
@@ -20,6 +18,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.mhp.constant.MessageConstant;
 import com.mhp.entity.PsyQuestionDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ScaleServiceImpl implements ScaleService {
@@ -135,6 +134,7 @@ public class ScaleServiceImpl implements ScaleService {
      * @param scaleId 量表ID
      * @return
      */
+    @Transactional
     @Override
     public void addQuestion(PsyQuestionDTO psyQuestionDTO) {
         // 验证量表状态是否为禁用
@@ -149,5 +149,80 @@ public class ScaleServiceImpl implements ScaleService {
         }
         // 新增题目
         scaleMapper.insertQuestion(psyQuestionDTO);
+            // 获取新增题目主键
+        Long questionId = psyQuestionDTO.getQuestionId();
+        // 新增选项
+        List<PsyOption> options = psyQuestionDTO.getOptions();
+        if (options != null && !options.isEmpty()) {
+            // 遍历选项列表，添加题目id
+            options.forEach(option -> {
+                option.setQuestionId(questionId);
+            });
+            scaleMapper.insertByOptions(options);
+        }
+        // 更新量表
+        PsyScale psyScale = PsyScale.builder()
+                .scaleId(psyQuestionDTO.getScaleId())
+                .questionCount(questionCount + 1)
+                .build();
+        scaleMapper.update(psyScale);
+    }
+
+    /**
+     * 删除题目
+     * @param id 题目ID
+     */
+    @Transactional
+    @Override
+    public void deleteQuestion(Long id) {
+        // 获取量表id
+        Long scaleId = scaleMapper.selectScaleIdByQuestionId(id);
+        // 验证量表状态是否为禁用
+        Integer status = scaleMapper.selectStatusById(scaleId);
+        if (status == 1) {
+            throw new BusinessException(MessageConstant.SCALE_STATUS_ERROR);
+        }
+        //删除题目
+        scaleMapper.deleteQuestion(id);
+        //删除选项
+        scaleMapper.deleteByQuestionId(id);
+
+        // 更新量表
+        PsyScale psyScale = scaleMapper.selectScaleById(scaleId);
+        Integer questionCount = psyScale.getQuestionCount();
+        psyScale = PsyScale.builder()
+                .scaleId(scaleId)
+                .questionCount(questionCount - 1)
+                .build();
+        scaleMapper.update(psyScale);
+    }
+
+    /**
+     * 批量删除量表
+     * @param scaleIds 量表ID列表
+     */
+    @Transactional
+    @Override
+    public void batchDeleteScale(List<Long> scaleIds) {
+        List<Integer> statusList = scaleMapper.selectStatusByIds(scaleIds);
+        statusList.forEach(status -> {
+            Integer scaleStatus = status;
+            if (scaleStatus == 1) {
+                throw new BusinessException(MessageConstant.SCALE_STATUS_ERROR_DELETE);
+            }
+        });
+        // 获取所有要删除的题目id
+        List<Long> questionIds = scaleMapper.selectByScaleQuestionIds(scaleIds);
+        
+        // 批量删除量表
+        scaleMapper.batchDeleteScale(scaleIds);
+        if (questionIds != null && !questionIds.isEmpty()) {
+            // 删除题目
+            scaleMapper.batchByScaleQuestion(scaleIds);
+        }
+        if (questionIds != null && !questionIds.isEmpty()) {
+            // 删除选项
+            scaleMapper.batchByScaleOption(questionIds);
+        }
     }
 }

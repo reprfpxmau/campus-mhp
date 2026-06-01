@@ -2,8 +2,10 @@ package com.mhp.controller.admin;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mhp.dto.ExamPageQueryDTO;
+import com.mhp.vo.ExanReportVO;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
 
@@ -40,4 +42,14 @@ public class ExamController {
         return Result.success(pageResult);
     }
     
+    /**
+     * 测评报告详情
+     * @param recordId 测评报告ID
+     * @return
+     */
+    @GetMapping("report/{recordId}")
+    public Result<ExanReportVO> report(@PathVariable Long recordId) {
+        ExanReportVO examReportVO = examService.getReport(recordId);
+        return Result.success(examReportVO);
+    }
 }

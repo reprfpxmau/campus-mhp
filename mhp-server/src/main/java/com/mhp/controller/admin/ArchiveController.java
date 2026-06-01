@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.mhp.dto.ArchivePageQueryDTO;
+import com.mhp.vo.MhArchiveVO;
 import com.mhp.result.PageResult;
 import com.mhp.service.ArchiveService;
 import com.mhp.result.Result;
@@ -57,10 +58,10 @@ public class ArchiveController {
      * @return
      */
     @GetMapping("/student/{studentId}")
-    public Result<MhArchive> detailByStudentId(@PathVariable Long studentId) {
+    public Result<MhArchiveVO> detailByStudentId(@PathVariable Long studentId) {
         log.info("根据学号查询档案详情：{}", studentId);
-        MhArchive mhArchive = archiveService.selectByStudentId(studentId);
-        return Result.success(mhArchive); 
+        MhArchiveVO mhArchiveVO = archiveService.selectByStudentId(studentId);
+        return Result.success(mhArchiveVO); 
     }
 
 

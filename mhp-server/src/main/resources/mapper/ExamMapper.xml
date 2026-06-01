@@ -22,4 +22,16 @@
         </where>
         order by create_time desc
     </select>
+
+    <!-- selectReport --> 
+
+    <select id="selectReport" resultType="com.mhp.vo.ExanReportVO">
+        select *
+        ,su.real_name as studentName
+        ,ps.scale_name as scaleName
+        from psy_report as pr
+        left join sys_user as su on pr.student_id = su.user_id
+        left join psy_scale as ps on pr.scale_id = ps.scale_id
+        where pr.record_id = #{recordId}
+    </select>
 </mapper>
