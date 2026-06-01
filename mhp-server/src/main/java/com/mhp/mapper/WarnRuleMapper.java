@@ -15,4 +15,10 @@ public interface WarnRuleMapper {
      */
     @Select("select * from cr_warn_rule")
     Page<CrWarnRule> pageQuery(RequestPageDTO requestPageDTO);
+
+    /**
+     * 新增预警规则
+     * @param crWarnRule
+     */
+    void insert(CrWarnRule crWarnRule);
 }

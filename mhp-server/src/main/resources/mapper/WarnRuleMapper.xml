@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mhp.mapper.WarnRuleMapper">
+    <insert id="insert" parameterType="com.mhp.entity.CrWarnRule">
+        insert into cr_warn_rule (rule_name, data_source, condition_expr, risk_level, notify_targets, status, version, create_time)
+        values (#{ruleName}, #{dataSource}, #{conditionExpr}, #{riskLevel}, #{notifyTargets}, #{status}, #{version}, #{createTime})
+    </insert>
+</mapper>

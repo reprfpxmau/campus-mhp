@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springdoc.core.annotations.ParameterObject;
 import com.mhp.dto.RequestPageDTO;
 import com.mhp.service.WarnRuleService;
+import com.mhp.dto.WarnRuleDTO;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/admin/warn-rule")
@@ -31,5 +34,18 @@ public class WarnRuleController {
         log.info("预警规则分页查询请求：{}", requestPageDTO);
         PageResult pageResult = warnRuleService.pageQuery(requestPageDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 预警规则新增
+     * @param warnRuleDTO
+     * @return
+     */
+    @PostMapping
+    @Operation(summary = "预警规则新增")
+    public Result add(@RequestBody WarnRuleDTO warnRuleDTO) {
+        log.info("预警规则新增请求：{}", warnRuleDTO);
+        warnRuleService.add(warnRuleDTO);
+        return Result.success();
     }
 }
