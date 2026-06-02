@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mhp.mapper.user.UserArchiveMapper">
+    <select id="getMyArchive" resultType="com.mhp.vo.user.ArchiveVO">
+        select 
+            ma.*,
+            college_name,
+            class_name
+         from mh_archive as ma
+         left join sys_college sco on ma.college_id = sco.college_id
+         left join sys_class as scl on ma.class_id = scl.class_id
+         where ma.student_id = #{studentId}
+    </select>
+
+    <!-- updateById --> 
+
+    <update id="updateById" parameterType="com.mhp.entity.MhArchive">
+        update mh_archive
+        <set>
+            <if test="familyStructure != null">
+                family_structure = #{familyStructure},
+            </if>
+            <if test="medicalHistory != null">
+                medical_history = #{medicalHistory},
+            </if>
+            <if test="majorEvents != null">
+                major_events = #{majorEvents},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where
+            student_id = #{studentId}
+    </update>   
+</mapper>

@@ -2,7 +2,6 @@ package com.mhp.controller.user;
 
 import com.mhp.context.BaseContext;
 import com.mhp.dto.user.UserNotificationPageQueryDTO;
-import com.mhp.entity.SysNotification;
 import com.mhp.result.PageResult;
 import com.mhp.result.Result;
 import com.mhp.service.user.UserNotificationService;
