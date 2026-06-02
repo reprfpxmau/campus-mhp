@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mhp.dto.user.UserLoginDTO;
+import com.mhp.dto.user.UserRegisterDTO;
 import com.mhp.result.Result;
 import com.mhp.service.user.UserAuthService;
 
@@ -25,8 +26,8 @@ public class UserAutoController {
     private UserAuthService userAuthService;
 
     /**
-     * 管理员登录
-     * @param adminLoginDTO
+     * 用户登录
+     * @param userLoginDTO
      * @return
      */
     @PostMapping("/login")
@@ -36,5 +37,12 @@ public class UserAutoController {
         return userAuthService.login(userLoginDTO);
     }
 
-    
+    @PostMapping("/register")
+    @Operation(summary = "用户注册")
+    public Result register(@RequestBody UserRegisterDTO userRegisterDTO) {
+        log.info("用户注册请求：{} ", userRegisterDTO);
+        return userAuthService.register(userRegisterDTO);
+    }
+
+
 }

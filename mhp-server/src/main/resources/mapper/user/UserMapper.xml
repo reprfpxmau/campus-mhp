@@ -8,4 +8,18 @@
             select * from sys_user where student_no = #{studentNo}
     </select>
 
+        <!-- 注册用户 --> 
+        <insert id="insert" useGeneratedKeys="true" keyProperty="userId" parameterType="com.mhp.entity.SysUser">
+            insert into sys_user (student_no, password, real_name, phone, id_card, role_id, status)
+            values (#{studentNo}, #{password}, #{realName}, #{phone}, #{idCard}, #{roleId}, #{status})
+        </insert>
+
+        <!-- newMhArchive --> 
+
+        <insert id="newMhArchive" parameterType="com.mhp.entity.MhArchive">
+            insert into mh_archive (student_id, student_no, name, archive_status, risk_level, create_time, update_time)
+            values (#{studentId}, #{studentNo}, #{name}, #{archiveStatus}, #{riskLevel}, #{createTime}, #{updateTime})
+        </insert>
+
+
 </mapper>

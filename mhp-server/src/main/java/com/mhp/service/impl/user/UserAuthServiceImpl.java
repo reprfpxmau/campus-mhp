@@ -1,20 +1,22 @@
 package com.mhp.service.impl.user;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.mhp.result.Result;
 import com.mhp.service.user.UserAuthService;
 import com.mhp.constant.MessageConstant;
 import com.mhp.dto.user.UserLoginDTO;
+import com.mhp.dto.user.UserRegisterDTO;
+import com.mhp.entity.MhArchive;
 import com.mhp.entity.SysUser;
 import com.mhp.mapper.user.UserMapper;
 import com.mhp.utils.JwtUtil;
 import com.mhp.vo.user.LoginVO;
 import lombok.extern.slf4j.Slf4j;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
+import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 public class UserAuthServiceImpl implements UserAuthService {
@@ -54,6 +56,49 @@ public class UserAuthServiceImpl implements UserAuthService {
         loginVO.setUserInfo(user);
         log.info("用户登录成功：{}", user.getRealName());
         return Result.success(loginVO);
+    }
+
+    /**
+     * 用户注册
+     * @param userRegisterDTO
+     * @return
+     */
+    @Override
+    @Transactional
+    public Result register(UserRegisterDTO userRegisterDTO) {
+        String studentNo = userRegisterDTO.getStudentNo();
+        String password = userRegisterDTO.getPassword();
+        
+        // MD5加密密码
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
+
+        SysUser user = SysUser.builder()
+                    .studentNo(studentNo)
+                    .password(password)
+                    .realName(userRegisterDTO.getRealName())
+                    .phone(userRegisterDTO.getPhone())
+                    .idCard(userRegisterDTO.getIdCard())
+                    .roleId(3L)
+                    .status(1)
+                    .build();
+            userMapper.insert(user);
+
+            Long studentId = user.getUserId();
+
+            //生成档案
+            MhArchive mhArchive = MhArchive.builder()
+                    .studentId(studentId)
+                    .studentNo(studentNo)
+                    .name(userRegisterDTO.getRealName())
+                    .gender(userRegisterDTO.getGender())
+                    .archiveStatus(1)
+                    .riskLevel(0)
+                    .createTime(LocalDateTime.now())
+                    .updateTime(LocalDateTime.now())
+                    .build();
+            
+            userMapper.newMhArchive(mhArchive);
+        return Result.success();
     }
 
 }
