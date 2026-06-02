@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhp.mapper.user.UserNotificationMapper">
+
+    <!-- 分页查询通知 -->
+    <select id="pageQuery" resultType="com.mhp.vo.user.UserNotificationVO">
+        SELECT notification_id, type, title, content, related_type, related_id, is_read, create_time
+        FROM sys_notification
+        WHERE user_id = #{userId}
+        <if test="type != null and type != ''">
+            AND type = #{type}
+        </if>
+        <if test="isRead != null">
+            AND is_read = #{isRead}
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 插入通知 -->
+    <insert id="insert" parameterType="com.mhp.entity.SysNotification" useGeneratedKeys="true" keyProperty="notificationId">
+        INSERT INTO sys_notification (user_id, type, title, content, related_type, related_id, is_read, create_time)
+        VALUES (#{userId}, #{type}, #{title}, #{content}, #{relatedType}, #{relatedId}, #{isRead}, #{createTime})
+    </insert>
+
+</mapper>

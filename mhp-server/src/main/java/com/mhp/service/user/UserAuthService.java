@@ -1,15 +1,16 @@
 package com.mhp.service.user;
 
-import org.springframework.stereotype.Service;  
+import org.springframework.stereotype.Service;
 import com.mhp.dto.user.UserLoginDTO;
 import com.mhp.result.Result;
+import com.mhp.vo.admin.LoginVO;
 
 @Service
 public interface UserAuthService {
-    /**
-     * 学生登录
+     /**
+     * 用户登录
      * @param userLoginDTO
      * @return
      */
-    Result login(UserLoginDTO userLoginDTO);
+    Result<LoginVO> login(UserLoginDTO userLoginDTO);
 }

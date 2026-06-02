@@ -120,7 +120,7 @@ campus-mhp/
 
 ## 数据库设计
 
-系统共 32 张业务表，遵循第三范式（3NF），采用 InnoDB 存储引擎，字符集 utf8mb4。
+系统共 33 张业务表，遵循第三范式（3NF），采用 InnoDB 存储引擎，字符集 utf8mb4。
 
 | 模块 | 表数 | 核心表 |
 |------|------|--------|
@@ -271,6 +271,11 @@ npm run build
 | 统计 | 学院咨询 | GET | /admin/stat/college-consult |
 | 统计 | 月度趋势 | GET | /admin/stat/monthly-exam |
 | 通用 | 文件上传 | POST | /admin/common/upload |
+| 通知 | 通知列表 | GET | /admin/notification/list |
+| 通知 | 未读数量 | GET | /admin/notification/unread-count |
+| 通知 | 标记已读 | POST | /admin/notification/read/{id} |
+| 通知 | 全部已读 | POST | /admin/notification/read-all |
+| 通知 | 创建通知 | POST | /admin/notification |
 
 ### 管理端接口 - 关键参数说明
 
@@ -319,6 +324,10 @@ npm run build
 | 聊天 | 结束会话 | POST | /user/chat/end/{sessionId} |
 | 预警 | 我的预警 | GET | /user/warn/my |
 | 咨询记录 | 记录列表 | GET | /user/consult/my-records |
+| 通知 | 通知列表 | GET | /user/notification/list |
+| 通知 | 未读数量 | GET | /user/notification/unread-count |
+| 通知 | 标记已读 | POST | /user/notification/read/{id} |
+| 通知 | 全部已读 | POST | /user/notification/read-all |
 | 行为日志 | 上报事件 | POST | /user/behavior/log |
 
 完整的请求参数和返回数据说明见 `api-doc/` 目录下的 HTML 接口文档。

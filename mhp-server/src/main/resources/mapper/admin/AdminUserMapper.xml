@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mhp.mapper.admin.UserMapper">
+<mapper namespace="com.mhp.mapper.admin.AdminUserMapper">
 
 <!-- 分页查询用户 --> 
     <select id="pageQuery" resultType="com.mhp.vo.admin.UserPageQueryVO">

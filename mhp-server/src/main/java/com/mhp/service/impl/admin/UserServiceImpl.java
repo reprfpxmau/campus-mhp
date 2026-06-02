@@ -21,14 +21,14 @@ import com.mhp.constant.MessageConstant;
 import com.mhp.dto.admin.UserPageQueryDTO;
 import com.mhp.exception.BusinessException;
 import com.mhp.mapper.admin.SysUserRoleMapper;
-import com.mhp.mapper.admin.UserMapper;
+import com.mhp.mapper.admin.AdminUserMapper;
 
 
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserMapper userMapper;
+    private AdminUserMapper userMapper;
     @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
     /**
