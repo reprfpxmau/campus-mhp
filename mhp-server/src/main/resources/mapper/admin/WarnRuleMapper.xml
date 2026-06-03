@@ -7,4 +7,56 @@
         insert into cr_warn_rule (rule_name, data_source, condition_expr, risk_level, notify_targets, status, version, create_time)
         values (#{ruleName}, #{dataSource}, #{conditionExpr}, #{riskLevel}, #{notifyTargets}, #{status}, #{version}, #{createTime})
     </insert>
-</mapper>
+
+    <!-- update --> 
+
+    <update id="update">
+        update cr_warn_rule
+        <set>
+        <if test="ruleName != null"> 
+        rule_name = #{ruleName},
+        </if>
+        <if test="dataSource != null"> 
+        data_source = #{dataSource},
+        </if>
+        <if test="conditionExpr != null"> 
+        condition_expr = #{conditionExpr},
+        </if>
+        <if test="riskLevel != null"> 
+        risk_level = #{riskLevel},
+        </if>
+        <if test="notifyTargets != null"> 
+        notify_targets = #{notifyTargets},
+        </if>
+        <if test="version != null"> 
+        version = #{version},
+        </if>
+        <if test="status != null"> 
+        status = #{status}
+        </if>
+        where rule_id = #{ruleId}
+        </set>
+    </update>
+
+    <!-- deleteBatch --> 
+
+<delete id="deleteBatch" parameterType="java.util.List">
+    delete from cr_warn_rule 
+    where rule_id in
+    <foreach collection="list" item="id" open="(" close=")" separator=",">
+        #{id}
+    </foreach>
+</delete>
+
+    <!-- selectCountByRuleIds --> 
+
+    <select id="selectCountByRuleIds" parameterType="java.util.List">
+        select count(*) from cr_warn_rule where rule_id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        and status = 1
+    </select>
+    
+    
+    </mapper>

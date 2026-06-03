@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mhp.mapper.admin.AppointmentMapper">
 
+<!-- 分页查询预约 -->
 <select id="pageQuery" resultType="com.mhp.vo.admin.AppointmentPageQueryVO">
     select ca.*,
         su.real_name as studentName,
@@ -23,8 +24,51 @@
         <if test="counselorId != null">
             and ca.counselor_id = #{counselorId}
         </if>
+        <if test="studentId != null">
+            and ca.student_id = #{studentId}
+        </if>
     </where>
     order by create_time desc
 </select>
 
-</mapper>
+    <!-- 改派咨询师 --> 
+    <update id="reassign">
+        update cs_appointment
+        <set>
+            <if test="counselorId != null">
+                counselor_id = #{counselorId},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where appointment_id = #{appointmentId}
+    </update>
+
+    <!-- 更新预约状态 --> 
+    <update id="updateStatus">
+        update cs_appointment
+        <set>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="confirmTime != null">
+                confirm_time = #{confirmTime}
+            </if>
+        </set>
+        where appointment_id = #{id}
+    </update>
+
+    <!-- 查找当前咨询师已完成预约的学生  0=待确认 1=已确认 2=已拒绝 3=已取消 4=已完成 --> 
+    <select id="completedStudents" resultType="com.mhp.vo.admin.completedStudentsVO">
+        select ca.student_id as studentId,
+       su.student_no as studentNo,
+       su.real_name as realName,
+       ca.appointment_id as appointmentId
+                
+        from cs_appointment as ca
+        left join sys_user as su on ca.student_id = su.user_id
+        where ca.counselor_id = #{userId} and ca.status = 1
+    </select>
+    
+    </mapper>

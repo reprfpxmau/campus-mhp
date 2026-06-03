@@ -2,12 +2,18 @@ package com.mhp.entity;
 
 import java.time.LocalDateTime;
 import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 /**
  * 咨询记录实体类
  * INDEX: idx_student_id, idx_counselor_id
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CsConsultRecord {
     // 主键
     private Long recordId;

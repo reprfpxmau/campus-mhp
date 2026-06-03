@@ -9,6 +9,7 @@ public class WarnPageQueryDTO implements Serializable {
     private Integer pageSize;
     
     private String studentName;
+    private Long studentId;
     private String eventLevel;
     private String eventStatus;
     private Long handlerId;

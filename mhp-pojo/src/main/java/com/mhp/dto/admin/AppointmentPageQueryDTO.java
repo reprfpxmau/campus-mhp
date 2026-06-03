@@ -1,15 +1,16 @@
 package com.mhp.dto.admin;
 
-import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class AppointmentPageQueryDTO implements Serializable {
+public class AppointmentPageQueryDTO {
     private Integer page;
     private Integer pageSize;
 
     // 学生姓名
     private String studentName;
+    // 学生ID（用户端查询自己的预约）
+    private Long studentId;
     // 状态
     private Integer status;
     // 预约日期

@@ -23,6 +23,9 @@
             <if test="handlerId != null">
                 and cwe.handler_id = #{handlerId}
             </if>
+            <if test="studentId != null">
+                and cwe.student_id = #{studentId}
+            </if>
         </where>
         order by cwe.create_time desc
     </select>

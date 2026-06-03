@@ -13,6 +13,8 @@ import java.util.List;
 
 import com.mhp.dto.admin.RequestPageDTO;
 import com.mhp.dto.admin.WarnRuleDTO;
+import com.mhp.constant.MessageConstant;
+import com.mhp.exception.BusinessException;
 
 import java.time.LocalDateTime;
 
@@ -54,4 +56,54 @@ public class WarnRuleServiceImpl implements WarnRuleService {
         warnRuleMapper.insert(crWarnRule);
     }
 
+    /**
+     * 更新预警规则
+     * @param warnRuleDTO
+     */
+    @Override
+    public void update(WarnRuleDTO warnRuleDTO) {
+        Integer status = warnRuleMapper.selectStatus(warnRuleDTO.getRuleId());
+        if(status == 1) {
+            throw new RuntimeException(MessageConstant.WARN_RULE_ENABLED);
+        }
+        CrWarnRule crWarnRule = CrWarnRule.builder()
+                .ruleId(warnRuleDTO.getRuleId())
+                .ruleName(warnRuleDTO.getRuleName())
+                .dataSource(warnRuleDTO.getDataSource())
+                .conditionExpr(warnRuleDTO.getConditionExpr())
+                .riskLevel(warnRuleDTO.getRiskLevel())
+                .notifyTargets(warnRuleDTO.getNotifyTargets())
+                .build();
+        Integer version = warnRuleMapper.selectVersion(warnRuleDTO.getRuleId());
+        crWarnRule.setVersion(version + 1);
+        warnRuleMapper.update(crWarnRule);
+    }
+
+    /**
+     * 更新预警规则状态
+     * @param ruleId
+     * @param status
+     */
+    @Override
+    public void updateStatus(Integer status, Long ruleId) {
+        CrWarnRule crWarnRule = CrWarnRule.builder()
+                .ruleId(ruleId)
+                .status(status)
+                .build();
+        warnRuleMapper.update(crWarnRule);
+    }
+
+    /**
+     * 删除预警规则
+     * @param id
+     */
+    @Override
+    public void deleteBatch(List<Long> ids) {
+        //判断是否存在启用的预警规则
+        Integer count = warnRuleMapper.selectCountByRuleIds(ids);
+        if(count > 0) {
+            throw new BusinessException(MessageConstant.WARN_RULE_ENABLED_DELETE);
+        }
+        warnRuleMapper.deleteBatch(ids);
+    }
 }

@@ -14,4 +14,9 @@ public class MessageConstant {
     public static final String SCALE_STATUS_ERROR = "启用的量表不能修改";
     public static final String SCALE_STATUS_ERROR_DELETE = "启用的量表不能删除";
     public static final String QUESTION_NO_EXIST = "题目号已存在";
+
+    public static final String WARN_RULE_ENABLED = "预警规则已启用，不能修改";
+    public static final String WARN_RULE_ENABLED_DELETE = "所选规则中包含启用规则，删除失败";
+    
+    public static final String SESSION_ID_NULL = "咨询会话不存在";
 }

@@ -257,8 +257,10 @@ npm run build
 | 测评 | 记录分页 | GET | /admin/exam/page |
 | 测评 | 报告详情 | GET | /admin/exam/report/{recordId} |
 | 预约 | 分页查询 | GET | /admin/appointment/page |
-| 预约 | 确认/拒绝 | POST | /admin/appointment/confirm/{id} |
+| 预约 | 确认/拒绝 | POST | /admin/appointment/confirm/{id} | 确认时自动创建咨询会话 |
 | 预约 | 改派咨询师 | PUT | /admin/appointment |
+| 咨询记录 | 记录分页 | GET | /admin/consult/page |
+| 咨询记录 | 新增记录 | POST | /admin/consult | 自动关联session，自动归档 |
 | 预警 | 分页查询 | GET | /admin/warn/page |
 | 预警 | 评估详情 | GET | /admin/warn/detail/{assessmentId} |
 | 预警 | 分发预警 | POST | /admin/warn/distribute |
