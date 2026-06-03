@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.mhp.result.Result;
 import com.mhp.entity.PsyScale;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+
 import com.mhp.service.user.UserScaleService;
 import java.util.List;
 import com.mhp.vo.user.QuestionsVO;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class UserScaleController {
     @Autowired
     private UserScaleService userScaleService;
+    
     /**
      * 查询用户测试可用的测试项
      * @return 可用的测试项
@@ -37,8 +40,10 @@ public class UserScaleController {
      * 用户测试题目
      * @return 测试题目
      */
+   // @Cacheable(cacheNames = "scaleCache", key = "#scaleId")
     @GetMapping("/{scaleId}/questions")
     public Result<List<QuestionsVO>> scale(@PathVariable Integer scaleId) {
+    
         ScaleVO scaleVO = userScaleService.scale(scaleId);
         return Result.success(scaleVO.getQuestions());
     }

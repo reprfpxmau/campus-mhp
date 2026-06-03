@@ -11,8 +11,6 @@ import com.mhp.vo.admin.ConsultPageQueryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserConsultServiceImpl implements UserConsultService {
     @Autowired

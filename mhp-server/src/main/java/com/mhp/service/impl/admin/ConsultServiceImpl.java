@@ -5,8 +5,6 @@ import com.mhp.dto.admin.ConsultDTO;
 import com.mhp.result.PageResult;
 import com.mhp.service.admin.ConsultService;
 import com.mhp.entity.CsConsultRecord;
-import com.mhp.exception.BusinessException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mhp.mapper.admin.ConsultMapper;
