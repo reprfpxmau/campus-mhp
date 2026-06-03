@@ -10,6 +10,9 @@ import com.mhp.entity.PsyScale;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mhp.service.user.UserScaleService;
 import java.util.List;
+import com.mhp.vo.user.QuestionsVO;
+import com.mhp.vo.user.ScaleVO;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -28,5 +31,15 @@ public class UserScaleController {
     public Result<List<PsyScale>> available() {
         Result<List<PsyScale>> psyScale = userScaleService.scaleList();
         return psyScale;
+    }
+
+    /**
+     * 用户测试题目
+     * @return 测试题目
+     */
+    @GetMapping("/{scaleId}/questions")
+    public Result<List<QuestionsVO>> scale(@PathVariable Integer scaleId) {
+        ScaleVO scaleVO = userScaleService.scale(scaleId);
+        return Result.success(scaleVO.getQuestions());
     }
 }
