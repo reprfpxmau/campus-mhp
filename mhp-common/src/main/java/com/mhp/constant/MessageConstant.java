@@ -19,4 +19,8 @@ public class MessageConstant {
     public static final String WARN_RULE_ENABLED_DELETE = "所选规则中包含启用规则，删除失败";
     
     public static final String SESSION_ID_NULL = "咨询会话不存在";
+
+    public static final String APPOINTMENT_NOT_FOUND = "预约不存在";
+    public static final String APPOINTMENT_NO_PERMISSION = "无权操作此预约";
+    public static final String APPOINTMENT_STATUS_ERROR = "当前状态不可取消";
 }

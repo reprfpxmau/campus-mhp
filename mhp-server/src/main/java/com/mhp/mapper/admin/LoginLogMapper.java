@@ -3,7 +3,7 @@ package com.mhp.mapper.admin;
 import org.apache.ibatis.annotations.Mapper;
 import com.github.pagehelper.Page;
 import com.mhp.dto.admin.AdminLoginLogDTO;
-import com.mhp.entity.SysLoginLog;
+import com.mhp.vo.admin.LoginLogVO;
 
 @Mapper
 public interface LoginLogMapper {
@@ -12,5 +12,5 @@ public interface LoginLogMapper {
      * @param adminLoginLogDTO
      * @return
      */
-    Page<SysLoginLog> pageQuery(AdminLoginLogDTO adminLoginLogDTO);
+    Page<LoginLogVO> pageQuery(AdminLoginLogDTO adminLoginLogDTO);
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.mhp.dto.admin.AdminLoginLogDTO;
-import com.mhp.entity.SysLoginLog;
+import com.mhp.vo.admin.LoginLogVO;
 import com.mhp.mapper.admin.LoginLogMapper;
 
 @Service
@@ -21,9 +21,9 @@ public class LoginLogServiceImpl implements LoginLogService {
     @Override
     public PageResult pageQuery(AdminLoginLogDTO adminLoginLogDTO) {
         PageHelper.startPage(adminLoginLogDTO.getPage(),adminLoginLogDTO.getPageSize());
-        Page<SysLoginLog> page = loginLogMapper.pageQuery(adminLoginLogDTO);
+        Page<LoginLogVO> page = loginLogMapper.pageQuery(adminLoginLogDTO);
         Long total = page.getTotal();
-        List<SysLoginLog> records = page.getResult();
+        List<LoginLogVO> records = page.getResult();
         return new PageResult(total,records);
     }
 }

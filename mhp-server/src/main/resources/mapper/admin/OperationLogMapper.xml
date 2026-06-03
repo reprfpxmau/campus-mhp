@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhp.mapper.admin.OperationLogMapper">
+    <select id="pageQuery" resultType="com.mhp.vo.admin.OperationLogVO">
+        SELECT mol.*,
+               su.real_name AS operatorName
+        FROM mh_operation_log mol
+        LEFT JOIN sys_user su ON mol.operator_id = su.user_id
+        <where>
+            <if test="archiveId != null">AND mol.archive_id = #{archiveId}</if>
+            <if test="operatorId != null">AND mol.operator_id = #{operatorId}</if>
+        </where>
+        ORDER BY mol.operation_time DESC
+    </select>
+</mapper>

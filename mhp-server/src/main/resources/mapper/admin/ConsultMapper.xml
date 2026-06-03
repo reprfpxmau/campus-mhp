@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mhp.mapper.admin.ConsultMapper">
+    <select id="pageQuery" parameterType="com.mhp.dto.admin.ConsultDTO">
+        select csr.*,
+               su.real_name as studentName,
+               suc.real_name as counselorName   
+        from 
+        cs_consult_record as csr
+        left join sys_user as su on csr.student_id = su.user_id
+        left join sys_user as suc on csr.counselor_id = suc.user_id
+        <where>
+            <if test="counselorId != null">and csr.counselor_id = #{counselorId}</if>
+            <if test="studentId != null">and csr.student_id = #{studentId}</if>
+            <if test="studentName != null and studentName != ''">and su.real_name like concat('%', #{studentName}, '%')</if>
+            <if test="archiveStatus != null">and csr.archive_status = #{archiveStatus}</if>
+        </where>
+        order by csr.create_time desc
+    </select>
+
+        <!-- 新增咨询会话 --> 
+    <insert id="insert" parameterType="com.mhp.entity.CsConsultSession">
+        INSERT INTO cs_consult_session 
+        (appointment_id, student_id, counselor_id, status, start_time)
+        VALUES (#{appointmentId}, #{studentId}, #{counselorId}, #{status}, #{startTime})    
+    </insert>
+
+    <!-- 新增咨询记录 --> 
+    <insert id="insertRecord">
+        INSERT INTO cs_consult_record 
+        (session_id, student_id, counselor_id, chief_complaint, consult_process, assessment, suggestion, archive_status)
+        VALUES (#{sessionId}, #{studentId}, #{counselorId}, #{chiefComplaint}, #{consultProcess}, #{assessment}, #{suggestion}, #{archiveStatus})       
+    </insert>
+
+    <!-- getSessionId --> 
+
+    <select id="getSessionId">
+        select session_id from cs_consult_session where appointment_id = #{appointmentId} and counselor_id = #{counselorId}
+    </select>    
+
+
+    <!-- 更新咨询预约状态 --> 
+    <update id="updateAppointmentStatus">
+        update cs_appointment set status = #{status} where appointment_id = #{appointmentId}
+    </update>    
+
+    <!-- updateSessionStatus --> 
+
+    <update id="updateSessionStatus">
+        update cs_consult_session set status = #{status} where session_id = #{sessionId}
+    </update>   
+    
+    <!-- 根据记录ID查询咨询记录详情 -->
+    <select id="selectById" resultType="com.mhp.vo.admin.ConsultPageQueryVO">
+        SELECT csr.*,
+               su.real_name AS studentName,
+               suc.real_name AS counselorName
+        FROM cs_consult_record csr
+        LEFT JOIN sys_user su ON csr.student_id = su.user_id
+        LEFT JOIN sys_user suc ON csr.counselor_id = suc.user_id
+        WHERE csr.record_id = #{recordId}
+    </select>
+
+</mapper>
